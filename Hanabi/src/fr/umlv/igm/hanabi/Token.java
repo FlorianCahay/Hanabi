@@ -9,7 +9,7 @@ public class Token {
 		if (color != Color.BLUE || color != Color.RED) {
 			throw new IllegalArgumentException("a token can only be blue or red");
 		}
-		this.color = color;
+		this.color = Objects.requireNonNull(color);
 	}
 
 	@Override
@@ -24,14 +24,14 @@ public class Token {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) {
+		if (this == obj)
 			return true;
-		}
-		if (!(obj instanceof Token)) {
+		if (obj == null)
 			return false;
-		}
+		if (getClass() != obj.getClass())
+			return false;
 		Token other = (Token) obj;
 		return color == other.color;
 	}
-
+	
 }
