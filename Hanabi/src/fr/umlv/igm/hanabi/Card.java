@@ -24,7 +24,12 @@ public class Card {
 
 	@Override
 	public String toString() {
-		return "the Card is a " + value + " " + color;
+		StringBuilder str = new StringBuilder();
+		str.append("*");
+		str.append(color.toString());
+		str.append(value);
+		str.append("*");
+		return str.toString();
 	}
 
 	@Override
@@ -34,7 +39,7 @@ public class Card {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) 
+		if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
