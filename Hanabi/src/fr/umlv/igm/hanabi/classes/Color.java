@@ -1,4 +1,4 @@
-package fr.umlv.igm.hanabi;
+package fr.umlv.igm.hanabi.classes;
 
 public enum Color {
 	WHITE, RED, BLUE, YELLOW, GREEN;

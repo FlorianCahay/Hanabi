@@ -1,4 +1,4 @@
-package fr.umlv.igm.hanabi;
+package fr.umlv.igm.hanabi.classes;
 
 import java.util.Objects;
 
@@ -6,7 +6,7 @@ public class Token {
 	private final Color color;
 
 	public Token(Color color) {
-		if (color != Color.BLUE || color != Color.RED) {
+		if (color != Color.BLUE && color != Color.RED) {
 			throw new IllegalArgumentException("a token can only be blue or red");
 		}
 		this.color = Objects.requireNonNull(color);
@@ -33,5 +33,5 @@ public class Token {
 		Token other = (Token) obj;
 		return color == other.color;
 	}
-	
+
 }

@@ -1,4 +1,6 @@
-package fr.umlv.igm.hanabi;
+package fr.umlv.igm.hanabi.classes.cards;
+
+import fr.umlv.igm.hanabi.classes.Card;
 
 public interface CardList {
 	public void add(Card c);

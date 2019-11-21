@@ -1,4 +1,4 @@
-package fr.umlv.igm.hanabi;
+package fr.umlv.igm.hanabi.classes;
 
 import java.util.Objects;
 

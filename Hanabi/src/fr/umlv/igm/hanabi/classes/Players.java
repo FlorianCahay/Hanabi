@@ -1,4 +1,4 @@
-package fr.umlv.igm.hanabi;
+package fr.umlv.igm.hanabi.classes;
 
 import java.util.ArrayList;
 
@@ -13,8 +13,8 @@ public class Players {
 		players.get(i).setName(name);
 	}
 
-	public String getPlayerName(int i) {
-		return players.get(i).getName();
+	public Player getPlayer(int i) {
+		return players.get(i);
 	}
 
 	public int getPlayersSize() {
@@ -24,6 +24,7 @@ public class Players {
 	@Override
 	public String toString() {
 		StringBuilder str = new StringBuilder();
+		str.append("Players :\n");
 		for (Player player : players) {
 			str.append(player);
 			str.append("\n");

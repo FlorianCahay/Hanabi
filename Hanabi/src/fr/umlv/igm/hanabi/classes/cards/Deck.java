@@ -1,6 +1,9 @@
-package fr.umlv.igm.hanabi;
+package fr.umlv.igm.hanabi.classes.cards;
 
 import java.util.Random;
+
+import fr.umlv.igm.hanabi.classes.Card;
+import fr.umlv.igm.hanabi.classes.Color;
 
 public class Deck extends AbstractCardList {
 

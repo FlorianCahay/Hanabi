@@ -1,8 +1,10 @@
-package fr.umlv.igm.hanabi;
+package fr.umlv.igm.hanabi.classes.cards;
 
 import java.util.ArrayList;
 
-public abstract class AbstractCardList implements CardList {
+import fr.umlv.igm.hanabi.classes.Card;
+
+public class AbstractCardList implements CardList {
 	private final ArrayList<Card> deck = new ArrayList<>();
 
 	public void add(Card c) {
@@ -11,10 +13,6 @@ public abstract class AbstractCardList implements CardList {
 
 	public Card remove(int i) {
 		return deck.remove(i);
-	}
-
-	public void remove(Card c) {
-		deck.remove(c);
 	}
 
 	public int size() {

@@ -1,6 +1,8 @@
-package fr.umlv.igm.hanabi;
+package fr.umlv.igm.hanabi.classes;
 
 import java.util.Objects;
+
+import fr.umlv.igm.hanabi.classes.cards.Hand;
 
 public class Player {
 
@@ -15,8 +17,16 @@ public class Player {
 		return name;
 	}
 
+	public int getSizeHand() {
+		return hand.size();
+	}
+
 	public void setName(String name) {
 		this.name = Objects.requireNonNull(name);
+	}
+
+	public Card playCard(int i, Board board) {
+		return hand.playCard(i, board);
 	}
 
 	@Override

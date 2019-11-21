@@ -1,4 +1,7 @@
-package fr.umlv.igm.hanabi;
+package fr.umlv.igm.hanabi.classes.cards;
+
+import fr.umlv.igm.hanabi.classes.Board;
+import fr.umlv.igm.hanabi.classes.Card;
 
 public class Hand extends AbstractCardList {
 	public Hand(Deck deck, int nbCards) {
@@ -11,8 +14,10 @@ public class Hand extends AbstractCardList {
 		add(deck.pickCard());
 	}
 
-	public Card playCard(Card c) {
-		remove(c);
+	public Card playCard(int i, Board board) {
+		Card c = remove(i);
+		board.add(c);
 		return c;
 	}
+
 }
