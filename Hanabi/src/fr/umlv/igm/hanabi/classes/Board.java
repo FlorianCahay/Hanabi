@@ -8,8 +8,21 @@ public class Board extends Box {
 		super(0, 3);
 	}
 
-	public void add(Card card) {
+	public void playCard(Card card) {
 		cards.add(card);
+	}
+
+	public boolean isPlayable(Card c) {
+		if (cards.contains(c)) {
+			return false;
+		}
+		if (c.getValue() == 1) {
+			return true;
+		}
+		if (!cards.contains(new Card(c.getValue() - 1, c.getColor()))) {
+			return false;
+		}
+		return true;
 	}
 
 	@Override
@@ -21,6 +34,6 @@ public class Board extends Box {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return super.toString() +"\nBoard cards : "+ cards;
+		return super.toString() + "\nBoard cards : " + cards;
 	}
 }

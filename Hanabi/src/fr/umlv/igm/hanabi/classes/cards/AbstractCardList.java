@@ -19,6 +19,14 @@ public class AbstractCardList implements CardList {
 		return deck.size();
 	}
 
+	public boolean contains(Card c) {
+		return deck.contains(c);
+	}
+
+	public Card getCard(int indexCard) {
+		return deck.get(indexCard);
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder str = new StringBuilder();

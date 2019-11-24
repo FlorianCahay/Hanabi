@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import fr.umlv.igm.hanabi.classes.Board;
 import fr.umlv.igm.hanabi.classes.Box;
-import fr.umlv.igm.hanabi.classes.Card;
 import fr.umlv.igm.hanabi.classes.Color;
 import fr.umlv.igm.hanabi.classes.Player;
 import fr.umlv.igm.hanabi.classes.Players;
@@ -18,6 +17,7 @@ public class Data {
 	private final Board board = new Board();
 	private final Players players = new Players();
 	private final Scanner scan = new Scanner(System.in);
+	private int indexPlayer = 0;
 
 	public Deck getDeck() {
 		return deck;
@@ -39,6 +39,10 @@ public class Data {
 		players.setPlayerName(i, scan.next());
 	}
 
+	public void setIndexPlayer(int indexPlayer) {
+		this.indexPlayer = indexPlayer;
+	}
+
 	public int playerChoseTypeOfPlay() {
 		int choice;
 		while (true) {
@@ -52,15 +56,33 @@ public class Data {
 		}
 	}
 
-	public Card playerDiscardCard(int indexPlayer) {
-		int indexCard = 0;
+	public void playerDiscardCard() {
 		Player player = players.getPlayer(indexPlayer);
+		int indexCard = choseCardInHand(player);
+		board.remove(new Token(Color.BLUE));
+		box.add(new Token(Color.BLUE));
+		player.discardCard(indexCard);
+	}
+
+	public void playerPlayCard() {
+		Player player = players.getPlayer(indexPlayer);
+		int indexCard = choseCardInHand(player);
+		if (board.isPlayable(player.getCardInHand(indexCard))) {
+			player.playCard(indexCard, board);
+		} else {
+			board.remove(new Token(Color.RED));
+			box.add(new Token(Color.RED));
+			player.discardCard(indexCard);
+			player.pickCardInDeck(deck);
+		}
+	}
+
+	private int choseCardInHand(Player player) {
+		int indexCard = 0;
 		while (indexCard < 1 || indexCard > player.getSizeHand() + 1) {
 			indexCard = scan.nextInt();
 		}
-		board.remove(new Token(Color.BLUE));
-		box.add(new Token(Color.BLUE));
-		return players.getPlayer(indexPlayer).playCard(indexCard - 1, board);
+		return indexCard - 1;
 	}
 
 	public void initialisePlayers(int nbPlayers) {

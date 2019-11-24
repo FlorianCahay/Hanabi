@@ -16,6 +16,7 @@ public class Controller {
 		int i = 0;
 		int choice = 0;
 		while (true) {
+			data.setIndexPlayer(i);
 			view.draw(data);
 			view.drawSeparator();
 			view.drawTypeOfPlay(data.getPlayers().getPlayer(i).getName());
@@ -23,9 +24,10 @@ public class Controller {
 			view.drawSeparator();
 			if (choice == 1) {
 				view.drawAskCardToDiscard();
-				data.playerDiscardCard(i);
+				data.playerDiscardCard();
 			} else {
-
+				view.drawAskCardToPlay();
+				data.playerPlayCard();
 			}
 			i = (i + 1) % nbPlayers;
 		}

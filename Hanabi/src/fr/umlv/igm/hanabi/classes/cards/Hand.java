@@ -16,8 +16,12 @@ public class Hand extends AbstractCardList {
 
 	public Card playCard(int i, Board board) {
 		Card c = remove(i);
-		board.add(c);
+		board.playCard(c);
 		return c;
+	}
+
+	public void discardCard(int i) {
+		remove(i);
 	}
 
 }

@@ -29,6 +29,10 @@ public class View {
 		System.out.println("Which card do you want to discard from your hand ? (write down the index of the card)");
 	}
 
+	public void drawAskCardToPlay() {
+		System.out.println("Which card do you want to play from your hand ? (write down the index of the card)");
+	}
+
 	public void drawTypeOfPlay(String playerName) {
 		System.out.println("1 : Discard a card\n2 : Play a Card\n" + playerName + " write your choice number down :");
 	}
