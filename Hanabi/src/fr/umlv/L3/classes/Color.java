@@ -1,20 +1,21 @@
-package fr.umlv.igm.hanabi.classes;
+package fr.umlv.L3.classes;
 
 public enum Color {
-	WHITE, RED, BLUE, YELLOW, GREEN;
-	
+	BLUE, RED, WHITE, GREEN, YELLOW;
+
+	@Override
 	public String toString() {
 		switch (this) {
-		case WHITE:
-			return "W";
-		case RED:
-			return "R";
 		case BLUE:
 			return "B";
-		case YELLOW:
-			return "Y";
+		case RED:
+			return "R";
+		case WHITE:
+			return "W";
 		case GREEN:
 			return "G";
+		case YELLOW:
+			return "Y";
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + this);
 		}

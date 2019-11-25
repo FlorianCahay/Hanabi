@@ -1,4 +1,4 @@
-package fr.umlv.igm.hanabi.classes;
+package fr.umlv.L3.classes;
 
 import java.util.Objects;
 
@@ -24,12 +24,12 @@ public class Token {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (!(obj instanceof Token)) {
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
+		}
 		Token other = (Token) obj;
 		return color == other.color;
 	}
