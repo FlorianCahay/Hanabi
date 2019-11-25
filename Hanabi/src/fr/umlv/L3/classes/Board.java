@@ -8,8 +8,8 @@ public class Board extends Box {
 	private final ArrayList<Card> discardedCards = new ArrayList<>();
 	private final HashMap<Color, Integer> fireworks = new HashMap<>();
 
-	public Board(int blueToken, int redToken) {
-		super(blueToken, redToken);
+	public Board() {
+		super(0, 3);
 	}
 
 	public void addDiscardedCard(Card card) {
@@ -18,8 +18,9 @@ public class Board extends Box {
 
 	public void addCard(Card card) {
 		if (isAddable(card)) {
-			fireworks.computeIfAbsent(card.getColor(), (k) -> 1);
 			fireworks.computeIfPresent(card.getColor(), (k, v) -> v + 1);
+			fireworks.computeIfAbsent(card.getColor(), (k) -> 1);
+			return;
 		}
 		throw new IllegalStateException("can't add card to the board as it doesn't respect rules");
 	}
@@ -29,11 +30,25 @@ public class Board extends Box {
 			if (fireworks.containsKey(card.getColor())) {
 				return false;
 			}
+			return true;
 		}
-		if (fireworks.get(card.getColor()) != card.getValue() - 1) { // add others
+		if (!fireworks.containsKey(card.getColor()) || fireworks.get(card.getColor()) != card.getValue() - 1) { // add
+																												// others
 			return false;
 		}
 		return true;
+	}
+
+	public boolean gameOver(Deck deck) {
+		if (deck.isEmpty() || getNumberRedToken() == 0 || getScore() == 25) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public String typeOfBox() {
+		return "Board";
 	}
 
 	public int getScore() {
@@ -42,7 +57,15 @@ public class Board extends Box {
 
 	@Override
 	public String toString() {
-		return super.toString() + "\nBoard cards : " + fireworks;
+		StringBuilder str = new StringBuilder();
+		for (Color color : fireworks.keySet()) {
+			str.append(color);
+			str.append(" firework :");
+			str.append(fireworks.get(color));
+			str.append("\n");
+		}
+		str.append(super.toString());
+		return str.toString();
 	}
 
 }

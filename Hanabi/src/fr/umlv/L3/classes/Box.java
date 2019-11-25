@@ -10,9 +10,13 @@ public class Box {
 		add(new Token(Color.RED), redToken);
 	}
 
+	public Box() {
+		this(8, 0);
+	}
+
 	public void add(Token token, int value) {
-		box.computeIfAbsent(token, k -> value);
 		box.computeIfPresent(token, (k, v) -> v + value);
+		box.computeIfAbsent(token, k -> value);
 	}
 
 	public void remove(Token token) {
@@ -26,6 +30,9 @@ public class Box {
 	}
 
 	private int getNumberToken(Token token) {
+		if (!box.containsKey(token)) {
+			return 0;
+		}
 		return box.get(token);
 	}
 
