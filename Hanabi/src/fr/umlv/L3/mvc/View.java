@@ -67,8 +67,9 @@ public class View {
 	 * 
 	 * @param playerName name of the actual player
 	 */
-	public void drawTypeOfPlay(String playerName) {
-		System.out.println("1 : Discard a card\n2 : Play a Card\n" + playerName + " write your choice number down :");
+	public void drawAskTypeOfPlay(String playerName) {
+		System.out.println("1 : Discard a card\n2 : Play a Card\n" + playerName
+				+ " Which play do you want to do write your choice number down :");
 	}
 
 	/**
@@ -78,7 +79,7 @@ public class View {
 	 */
 	public void drawErrorTypeOfPlay(String playerName) {
 		System.out.println("ERROR : Type of play number must be an integer (1 or 2)");
-		drawTypeOfPlay(playerName);
+		drawAskTypeOfPlay(playerName);
 	}
 
 	/**

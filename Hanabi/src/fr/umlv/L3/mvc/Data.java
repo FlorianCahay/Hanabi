@@ -98,7 +98,7 @@ public class Data {
 			scanner.next();
 			throw new IllegalStateException("choice number must be a integer of 1 or 2");
 		}
-		int choice = scanner.nextInt();
+		var choice = scanner.nextInt();
 		if (choice == 1 || choice == 2) {
 			return choice;
 		}
@@ -164,7 +164,7 @@ public class Data {
 	}
 
 	private int inputValueCard() {
-		int value = 0;
+		var value = 0;
 		if (!scanner.hasNextInt()) {
 			scanner.next();
 			throw new IllegalStateException("card value must be an integer between [1,5]");
@@ -208,8 +208,6 @@ public class Data {
 	 * add a player to players list
 	 */
 	public void addPlayer() {
-		String name;
-		name = scanner.next();
-		players.add(new Player(name, deck));
+		players.add(new Player(scanner.next(), deck));
 	}
 }

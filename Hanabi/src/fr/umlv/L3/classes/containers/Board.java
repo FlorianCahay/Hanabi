@@ -38,12 +38,11 @@ public class Board extends Box {
 	 * @throws IllegalArgumentException if card is not addable
 	 */
 	public void addCard(Card card) {
-		if (isAddable(card)) {
-			fireworks.computeIfPresent(card.getColor(), (k, v) -> v + 1);
-			fireworks.computeIfAbsent(card.getColor(), (k) -> 1);
-			return;
+		if (!isAddable(card)) {
+			throw new IllegalStateException("can't add card to the board as it doesn't respect rules");
 		}
-		throw new IllegalStateException("can't add card to the board as it doesn't respect rules");
+		fireworks.computeIfPresent(card.getColor(), (k, v) -> v + 1);
+		fireworks.computeIfAbsent(card.getColor(), (k) -> 1);
 	}
 
 	/**
@@ -60,6 +59,7 @@ public class Board extends Box {
 			return true;
 		}
 		if (!fireworks.containsKey(card.getColor()) || fireworks.get(card.getColor()) != card.getValue() - 1) { // add
+																												// //
 																												// others
 			return false;
 		}
@@ -95,18 +95,22 @@ public class Board extends Box {
 
 	@Override
 	public String toString() {
-		StringBuilder str = new StringBuilder();
+		var str = new StringBuilder();
+
 		str.append(super.toString());
 		str.append("\n");
+
 		str.append("discarded cards : ");
 		str.append(discardedCards);
 		str.append("\n");
+
 		for (Color color : fireworks.keySet()) {
 			str.append(color);
 			str.append(" firework : ");
 			str.append(fireworks.get(color));
 			str.append("\n");
 		}
+
 		return str.toString();
 	}
 

@@ -59,9 +59,6 @@ public class Box {
 	}
 
 	private int getNumberToken(Token token) {
-		if (!box.containsKey(token)) {
-			return 0;
-		}
 		return box.get(token);
 	}
 

@@ -11,53 +11,25 @@ import fr.umlv.L3.classes.elements.Token;
  */
 public class Controller {
 	public static void main(String[] args) {
-		int nbPlayers = 2;
-		Data data = new Data();
-		View view = new View();
+		var nbPlayers = 2;
+		var data = new Data();
+		var view = new View();
 
 		initialisePlayers(data, view, nbPlayers);
 
-		int i = 0;
-		int playChoice = 0;
+		var i = 0;
+		var playChoice = 0;
+		var quit = false;
 
-		while (true) {
-
+		while (!quit) {
 			data.setActualPlayer(i);
-
 			view.draw(data);
 			view.drawSeparator();
-
-			view.drawTypeOfPlay(data.getActualPlayerName());
-			while (playChoice == 0) {
-				try {
-					playChoice = data.playerChoseTypeOfPlay();
-				} catch (Exception e) {
-					view.drawErrorTypeOfPlay(data.getActualPlayerName());
-				}
-			}
-			view.drawSeparator();
-
-			if (playChoice == 1) {
-				view.drawPlayer(data.getActualPlayer());
-				view.drawAskCard();
-				data.playerDiscardCard(choseCard(data, view), new Token(Color.BLUE));
-				view.drawSeparator();
-			} else {
-				view.drawPlayer(data.getActualPlayer());
-				view.drawAskCard();
-				data.playerPlayCard(choseCard(data, view));
-				view.drawSeparator();
-			}
+			playChoice = choseTypeOfPlay(data, view);
+			play(data, view, playChoice);
 			playChoice = 0;
-
-			if (data.gameOver()) {
-				view.drawEndGame(data.getScore());
-				view.drawSeparator();
-				return;
-			}
-
+			quit = isGameOver(data, view);
 			i = (i + 1) % nbPlayers;
-
 		}
 	}
 
@@ -96,5 +68,63 @@ public class Controller {
 			}
 		}
 		return card;
+	}
+
+	/**
+	 * return corresponding value of a play
+	 * 
+	 * @param data Game data
+	 * @param view Game view
+	 * @return value of choice
+	 */
+	public static int choseTypeOfPlay(Data data, View view) {
+		var playChoice = 0;
+		view.drawAskTypeOfPlay(data.getActualPlayerName());
+		while (playChoice == 0) {
+			try {
+				playChoice = data.playerChoseTypeOfPlay();
+			} catch (Exception e) {
+				view.drawErrorTypeOfPlay(data.getActualPlayerName());
+			}
+		}
+		view.drawSeparator();
+		return playChoice;
+	}
+
+	/**
+	 * make a play
+	 * 
+	 * @param data       Game data
+	 * @param view       Game view
+	 * @param playChoice value of the play
+	 */
+	public static void play(Data data, View view, int playChoice) {
+		if (playChoice == 1) {
+			view.drawPlayer(data.getActualPlayer());
+			view.drawAskCard();
+			data.playerDiscardCard(choseCard(data, view), new Token(Color.BLUE));
+			view.drawSeparator();
+		} else {
+			view.drawPlayer(data.getActualPlayer());
+			view.drawAskCard();
+			data.playerPlayCard(choseCard(data, view));
+			view.drawSeparator();
+		}
+	}
+
+	/**
+	 * show score if game is over
+	 * 
+	 * @param data Game data
+	 * @param view Game view
+	 * @return True if game is over, False otherwise
+	 */
+	public static boolean isGameOver(Data data, View view) {
+		if (data.gameOver()) {
+			view.drawEndGame(data.getScore());
+			view.drawSeparator();
+			return true;
+		}
+		return false;
 	}
 }
