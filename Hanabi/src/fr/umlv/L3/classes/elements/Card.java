@@ -1,20 +1,46 @@
-package fr.umlv.L3.classes;
+package fr.umlv.L3.classes.elements;
 
 import java.util.Objects;
 
+/**
+ * 
+ * Represent a card with a value and a color
+ *
+ */
 public class Card {
 	private final int value;
 	private final Color color;
 
+	/**
+	 * Constructor initializing a Card
+	 * 
+	 * @param value Value between 1 and 5
+	 * @param color color from Color enumerate
+	 * @throws IllegalArgumentException if value is not include in [1,5]
+	 * @throws NullPointerException     if color is null
+	 */
 	public Card(int value, Color color) {
+		if (value < 1 || value > 5) {
+			throw new IllegalArgumentException("card value must include in [1,5]");
+		}
 		this.value = value;
 		this.color = Objects.requireNonNull(color);
 	}
 
+	/**
+	 * Get card color
+	 * 
+	 * @return card color
+	 */
 	public Color getColor() {
 		return color;
 	}
 
+	/**
+	 * get card value
+	 * 
+	 * @return card value
+	 */
 	public int getValue() {
 		return value;
 	}

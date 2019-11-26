@@ -3,14 +3,19 @@ package fr.umlv.L3.mvc;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import fr.umlv.L3.classes.Board;
-import fr.umlv.L3.classes.Box;
-import fr.umlv.L3.classes.Card;
-import fr.umlv.L3.classes.Color;
-import fr.umlv.L3.classes.Deck;
-import fr.umlv.L3.classes.Player;
-import fr.umlv.L3.classes.Token;
+import fr.umlv.L3.classes.containers.Board;
+import fr.umlv.L3.classes.containers.Box;
+import fr.umlv.L3.classes.elements.Card;
+import fr.umlv.L3.classes.elements.Color;
+import fr.umlv.L3.classes.elements.Token;
+import fr.umlv.L3.classes.others.Deck;
+import fr.umlv.L3.classes.others.Player;
 
+/**
+ * 
+ * Represent the data game manager
+ *
+ */
 public class Data {
 	private final Board board = new Board();
 	private final Box box = new Box();
@@ -19,26 +24,75 @@ public class Data {
 	private final Scanner scanner = new Scanner(System.in);
 	private Player actualPlayer = null;
 
+	/**
+	 * get data board
+	 * 
+	 * @return data board
+	 */
 	public Board getBoard() {
 		return board;
 	}
 
+	/**
+	 * get data box
+	 * 
+	 * @return data box
+	 */
 	public Box getBox() {
 		return box;
 	}
 
+	/**
+	 * get data players
+	 * 
+	 * @return data players
+	 */
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}
 
+	/**
+	 * set data actual player
+	 * 
+	 * @param actualPlayerIndex which player to get from players
+	 */
 	public void setActualPlayer(int actualPlayerIndex) {
 		this.actualPlayer = players.get(actualPlayerIndex);
 	}
 
+	/**
+	 * Get data deck size
+	 * 
+	 * @return Data deck size
+	 */
+	public int getDeckSize() {
+		return deck.getSize();
+	}
+
+	/**
+	 * get data actual player name
+	 * 
+	 * @return data actual player name
+	 */
 	public String getActualPlayerName() {
 		return actualPlayer.getName();
 	}
 
+	/**
+	 * get data actual player
+	 * 
+	 * @return data actual player
+	 */
+	public Player getActualPlayer() {
+		return actualPlayer;
+	}
+
+	/**
+	 * get which type of play the player want to do
+	 * 
+	 * @return choice of the player
+	 * @throws IllegalArgumentException if choice number is not include in [1,2]
+	 */
 	public int playerChoseTypeOfPlay() {
 		if (!scanner.hasNextInt()) {
 			scanner.next();
@@ -51,14 +105,27 @@ public class Data {
 		throw new IllegalStateException("choice number must be a integer of 1 or 2");
 	}
 
-	public void playerDiscardCard(Card card) {
-		Token token = new Token(Color.BLUE);
-		board.remove(token);
-		box.add(token, 1);
+	/**
+	 * player discard a card in discarded cards
+	 * 
+	 * @param card  Card to discard
+	 * @param token Token to move from board to box
+	 */
+	public void playerDiscardCard(Card card, Token token) {
+		if (board.remove(token)) {
+			box.add(token, 1);
+		}
 		actualPlayer.discardCard(card);
 		actualPlayer.pickCardInDeck(deck);
+		board.addDiscardedCard(card);
 	}
 
+	/**
+	 * player play card on board
+	 * 
+	 * @param card Card to play
+	 * 
+	 */
 	public void playerPlayCard(Card card) {
 		if (board.isAddable(card)) {
 			actualPlayer.discardCard(card);
@@ -66,13 +133,14 @@ public class Data {
 			board.addCard(card);
 			return;
 		}
-		Token token = new Token(Color.RED);
-		board.remove(token);
-		box.add(token, 1);
-		actualPlayer.discardCard(card);
-		actualPlayer.pickCardInDeck(deck);
+		playerDiscardCard(card, new Token(Color.RED));
 	}
 
+	/**
+	 * create card base on input from user
+	 * 
+	 * @return new Card
+	 */
 	public Card inputCard() {
 		return new Card(inputValueCard(), inputColorCard());
 	}
@@ -108,18 +176,37 @@ public class Data {
 		return value;
 	}
 
+	/**
+	 * Test if player hand has the card
+	 * 
+	 * @param card Card to test
+	 * @return True if card contained in player hand, False otherwise
+	 */
 	public boolean playerHasCard(Card card) {
 		return actualPlayer.handContains(card);
 	}
 
+	/**
+	 * Test if the game is over
+	 * 
+	 * @return True if the game is over, False otherwise
+	 */
 	public boolean gameOver() {
 		return board.gameOver(deck);
 	}
 
+	/**
+	 * get score from board
+	 * 
+	 * @return score
+	 */
 	public int getScore() {
 		return board.getScore();
 	}
 
+	/**
+	 * add a player to players list
+	 */
 	public void addPlayer() {
 		String name;
 		name = scanner.next();

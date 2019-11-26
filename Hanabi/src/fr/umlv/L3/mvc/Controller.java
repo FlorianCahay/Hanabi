@@ -1,7 +1,14 @@
 package fr.umlv.L3.mvc;
 
-import fr.umlv.L3.classes.Card;
+import fr.umlv.L3.classes.elements.Card;
+import fr.umlv.L3.classes.elements.Color;
+import fr.umlv.L3.classes.elements.Token;
 
+/**
+ * 
+ * Represent the game loop
+ *
+ */
 public class Controller {
 	public static void main(String[] args) {
 		int nbPlayers = 2;
@@ -25,20 +32,23 @@ public class Controller {
 				try {
 					playChoice = data.playerChoseTypeOfPlay();
 				} catch (Exception e) {
-					view.drawErrorTypeOfPlay();
+					view.drawErrorTypeOfPlay(data.getActualPlayerName());
 				}
 			}
 			view.drawSeparator();
 
 			if (playChoice == 1) {
-				view.drawAskCardToDiscard();
-				data.playerDiscardCard(choseCard(data, view));
+				view.drawPlayer(data.getActualPlayer());
+				view.drawAskCard();
+				data.playerDiscardCard(choseCard(data, view), new Token(Color.BLUE));
 				view.drawSeparator();
 			} else {
-				view.drawAskCardToPlay();
+				view.drawPlayer(data.getActualPlayer());
+				view.drawAskCard();
 				data.playerPlayCard(choseCard(data, view));
 				view.drawSeparator();
 			}
+			playChoice = 0;
 
 			if (data.gameOver()) {
 				view.drawEndGame(data.getScore());
@@ -51,6 +61,13 @@ public class Controller {
 		}
 	}
 
+	/**
+	 * initialize players by asking their names
+	 * 
+	 * @param data      Game data
+	 * @param view      Game view
+	 * @param nbPlayers number of players to initialize
+	 */
 	public static void initialisePlayers(Data data, View view, int nbPlayers) {
 		for (int i = 0; i < nbPlayers; i++) {
 			view.drawAskName(i + 1);
@@ -59,11 +76,18 @@ public class Controller {
 		}
 	}
 
+	/**
+	 * player chose card in his hand
+	 * 
+	 * @param data Game data
+	 * @param view Game view
+	 * @return Card initialize
+	 */
 	public static Card choseCard(Data data, View view) {
 		Card card = null;
 		while (!data.playerHasCard(card)) {
 			if (card != null) {
-				view.drawErrorCardChoseNotInHand();
+				view.drawErrorCardChoseNotInHand(data.getActualPlayer());
 			}
 			try {
 				card = data.inputCard();

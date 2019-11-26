@@ -1,15 +1,26 @@
-package fr.umlv.L3.classes;
+package fr.umlv.L3.classes.elements;
 
 import java.util.Objects;
 
+/**
+ * 
+ * Represent a token as a color
+ *
+ */
 public class Token {
 	private final Color color;
 
+	/**
+	 * Constructor initializing token color
+	 * 
+	 * @param color Token color
+	 * @throws IllegalArgumentException if color is not blue or red
+	 */
 	public Token(Color color) {
 		if (color != Color.BLUE && color != Color.RED) {
 			throw new IllegalArgumentException("a token can only be blue or red");
 		}
-		this.color = Objects.requireNonNull(color);
+		this.color = color;
 	}
 
 	@Override
