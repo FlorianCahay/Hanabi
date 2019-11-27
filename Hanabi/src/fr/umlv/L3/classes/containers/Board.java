@@ -1,7 +1,7 @@
 package fr.umlv.L3.classes.containers;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Stack;
 
 import fr.umlv.L3.classes.elements.Card;
 import fr.umlv.L3.classes.elements.Color;
@@ -12,7 +12,7 @@ import fr.umlv.L3.classes.others.Deck;
  * ArrayList for the discarded cards
  */
 public class Board extends Box {
-	private final ArrayList<Card> discardedCards = new ArrayList<>();
+	private final Stack<Card> discardedCards = new Stack<>();
 	private final HashMap<Color, Integer> fireworks = new HashMap<>();
 
 	/**
@@ -28,7 +28,7 @@ public class Board extends Box {
 	 * @param card Card to add
 	 */
 	public void addDiscardedCard(Card card) {
-		discardedCards.add(card);
+		discardedCards.push(card);
 	}
 
 	/**
@@ -100,10 +100,11 @@ public class Board extends Box {
 		str.append(super.toString());
 		str.append("\n");
 
-		str.append("discarded cards : ");
-		str.append(discardedCards);
-		str.append("\n");
-
+		str.append("last discarded card : ");
+		if (!discardedCards.isEmpty()) {
+			str.append(discardedCards.peek());
+			str.append("\n");
+		}
 		for (Color color : fireworks.keySet()) {
 			str.append(color);
 			str.append(" firework : ");

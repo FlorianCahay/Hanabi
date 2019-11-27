@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Objects;
 
 import fr.umlv.L3.classes.elements.Card;
+import fr.umlv.L3.classes.hint.Hint;
 
 /**
  * 
@@ -13,6 +14,7 @@ import fr.umlv.L3.classes.elements.Card;
 public class Player {
 	private final String name;
 	private final LinkedList<Card> hand = new LinkedList<Card>();
+	private String hint;
 
 	/**
 	 * Constructor initializing a Player with his name and picking five cards to
@@ -21,11 +23,16 @@ public class Player {
 	 * @param name Player name
 	 * @param deck Game deck
 	 */
-	public Player(String name, Deck deck) {
+	public Player(String name, Deck deck, int nbPlayers) {
 		this.name = Objects.requireNonNull(name);
-		for (int i = 0; i < 5; i++) {
+		var nbCards = 5;
+		if (nbPlayers > 3) {
+			nbCards = 4;
+		}
+		for (int i = 0; i < nbCards; i++) {
 			pickCardInDeck(deck);
 		}
+		hint = "none";
 	}
 
 	/**
@@ -65,6 +72,33 @@ public class Player {
 	 */
 	public boolean handContains(Card card) {
 		return hand.contains(card);
+	}
+
+	public void setHint(Hint hint) {
+		this.hint = hint.giveInfo(hand);
+	}
+
+	public String readhint() {
+		String hintString = hint;
+		hint = "none";
+		return "Last hint someone gave you : " + hintString;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Player)) {
+			return false;
+		}
+		Player other = (Player) obj;
+		return Objects.equals(name, other.name);
 	}
 
 	@Override

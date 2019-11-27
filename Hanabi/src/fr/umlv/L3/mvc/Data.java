@@ -1,15 +1,19 @@
 package fr.umlv.L3.mvc;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import fr.umlv.L3.classes.containers.Board;
 import fr.umlv.L3.classes.containers.Box;
 import fr.umlv.L3.classes.elements.Card;
 import fr.umlv.L3.classes.elements.Color;
 import fr.umlv.L3.classes.elements.Token;
+import fr.umlv.L3.classes.hint.Hint;
+import fr.umlv.L3.classes.hint.HintColor;
+import fr.umlv.L3.classes.hint.HintValue;
 import fr.umlv.L3.classes.others.Deck;
+import fr.umlv.L3.classes.others.PlayType;
 import fr.umlv.L3.classes.others.Player;
+import fr.umlv.L3.classes.others.ScannerSystemIn;
 
 /**
  * 
@@ -21,7 +25,7 @@ public class Data {
 	private final Box box = new Box();
 	private final Deck deck = new Deck();
 	private final ArrayList<Player> players = new ArrayList<>();
-	private final Scanner scanner = new Scanner(System.in);
+	private final ScannerSystemIn scanner = new ScannerSystemIn();
 	private Player actualPlayer = null;
 
 	/**
@@ -93,16 +97,8 @@ public class Data {
 	 * @return choice of the player
 	 * @throws IllegalArgumentException if choice number is not include in [1,2]
 	 */
-	public int playerChoseTypeOfPlay() {
-		if (!scanner.hasNextInt()) {
-			scanner.next();
-			throw new IllegalStateException("choice number must be a integer of 1 or 2");
-		}
-		var choice = scanner.nextInt();
-		if (choice == 1 || choice == 2) {
-			return choice;
-		}
-		throw new IllegalStateException("choice number must be a integer of 1 or 2");
+	public int playerChoseTypeOfPlay(View view) {
+		return scanner.getValidInt("You can only chose 1,2 or 3 for play type", view, 1, PlayType.values().length);
 	}
 
 	/**
@@ -141,49 +137,31 @@ public class Data {
 	 * 
 	 * @return new Card
 	 */
-	public Card inputCard() {
-		return new Card(inputValueCard(), inputColorCard());
+	public Card inputCard(View view) {
+		return scanner.getValidCardFromHand(view, actualPlayer);
 	}
 
-	private Color inputColorCard() {
-		switch (scanner.next()) {
-		case "RED":
-			return Color.RED;
-		case "BLUE":
-			return Color.BLUE;
-		case "YELLOW":
-			return Color.YELLOW;
-		case "WHITE":
-			return Color.WHITE;
-		case "GREEN":
-			return Color.GREEN;
-		default:
-			throw new IllegalStateException(
-					"Color string must be in capitals and be an existing color of the fireworks");
-		}
+	public int inputNbPlayers(View view) {
+		return scanner.getValidInt("This game can be played from 2 to 5 players", view, 2, 5);
 	}
 
-	private int inputValueCard() {
-		var value = 0;
-		if (!scanner.hasNextInt()) {
-			scanner.next();
-			throw new IllegalStateException("card value must be an integer between [1,5]");
+	public void giveHint(View view) {
+		var player = scanner.getValidPlayer(view, players);
+		view.drawAskColorOrValue();
+		var choice = scanner.getValidInt("You can only give hint about color or value", view, 1, 2);
+		Hint hint;
+		if (choice == 1) {
+			view.drawAskForColor();
+			hint = new HintColor(scanner.getValidColor(view));
+		} else {
+			view.drawAskForValue();
+			hint = new HintValue(scanner.getValidInt("Card value has to be include in [1,5]", view, 1, 5));
 		}
-		value = scanner.nextInt();
-		if (value < 1 || value > 5) {
-			throw new IllegalStateException("card value must be an integer between [1,5]");
+		player.setHint(hint);
+		var token = new Token(Color.BLUE);
+		if (box.remove(token)) {
+			board.add(token, 1);
 		}
-		return value;
-	}
-
-	/**
-	 * Test if player hand has the card
-	 * 
-	 * @param card Card to test
-	 * @return True if card contained in player hand, False otherwise
-	 */
-	public boolean playerHasCard(Card card) {
-		return actualPlayer.handContains(card);
 	}
 
 	/**
@@ -207,7 +185,8 @@ public class Data {
 	/**
 	 * add a player to players list
 	 */
-	public void addPlayer() {
-		players.add(new Player(scanner.next(), deck));
+	public void addPlayer(View view, int nbPlayers) {
+		players.add(new Player(scanner.getValidString("Your name as to be a string of at least 1 character", view),
+				deck, nbPlayers));
 	}
 }

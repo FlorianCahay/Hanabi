@@ -44,6 +44,7 @@ public class View {
 	 * @param i which player
 	 */
 	public void drawAskName(int i) {
+		drawSeparator();
 		System.out.println("Player " + i + " write your name down :");
 	}
 
@@ -58,6 +59,7 @@ public class View {
 	 * Print sentence asking for a card in player hand
 	 */
 	public void drawAskCard() {
+		drawSeparator();
 		System.out.println(
 				"Which card do you want from your hand ? (write down number press enter then write down color in CAPITALS press enter)");
 	}
@@ -67,9 +69,17 @@ public class View {
 	 * 
 	 * @param playerName name of the actual player
 	 */
-	public void drawAskTypeOfPlay(String playerName) {
-		System.out.println("1 : Discard a card\n2 : Play a Card\n" + playerName
+	public void drawAskTypeOfPlay(Player player) {
+		drawSeparator();
+		System.out.println(player.getName() + " it is your turn now");
+		drawPlayerHint(player);
+		drawSeparator();
+		System.out.println("1 : Give a hint\n2 : Discard a Card\n3 : Play a Card\n" + player.getName()
 				+ " Which play do you want to do write your choice number down :");
+	}
+
+	public void drawError(String error) {
+		System.out.println("ERROR : " + error);
 	}
 
 	/**
@@ -77,17 +87,21 @@ public class View {
 	 * 
 	 * @param playerName Actual player name
 	 */
-	public void drawErrorTypeOfPlay(String playerName) {
-		System.out.println("ERROR : Type of play number must be an integer (1 or 2)");
-		drawAskTypeOfPlay(playerName);
+	public void drawErrorTypeOfPlay(Player player) {
+		drawError("Type of play number must be an integer (1,2,3)");
+		drawAskTypeOfPlay(player);
 	}
 
 	/**
 	 * Print error for card chose
 	 */
 	public void drawErrorCardChose() {
-		System.out.println("ERROR : Write down number press enter then write down color in CAPITALS press enter");
+		drawError("Write down number press enter then write down color in CAPITALS press enter");
 		drawAskCard();
+	}
+
+	public void drawErrorPlayerDoesntExist() {
+		drawError("The name you wrote is not an existing player");
 	}
 
 	/**
@@ -96,9 +110,18 @@ public class View {
 	 * @param player Actual player
 	 */
 	public void drawErrorCardChoseNotInHand(Player player) {
-		System.out.println("ERROR : Your hand doesn't contain the card you chose");
+		drawError("Your hand doesn't contain the card you chose");
 		drawPlayer(player);
 		drawAskCard();
+	}
+
+	public void drawErrorNbPlayers() {
+		drawError("min is 2 and max is 5");
+		drawAskPlayers();
+	}
+
+	public void drawErrortCantDoPlay() {
+		drawError("you can't do this play");
 	}
 
 	/**
@@ -107,6 +130,7 @@ public class View {
 	 * @param points score at the end game
 	 */
 	public void drawEndGame(int points) {
+		drawSeparator();
 		System.out.println("The game is over you scored " + points + " points WELL PLAYED !!!");
 	}
 
@@ -128,12 +152,42 @@ public class View {
 		System.out.println("remaining cards in deck : " + deckSize);
 	}
 
+	public void drawAskPlayers() {
+		drawSeparator();
+		System.out.println("How many players are you write it down ? (min 2 and max 5) ");
+	}
+
+	public void drawAskHint() {
+		drawSeparator();
+		System.out.println("To which player do you want to give a hint ?");
+	}
+
+	public void drawAskColorOrValue() {
+		drawSeparator();
+		System.out.println("1 : Color\n2 : Value\nWrite down what type of hint you want to give :");
+	}
+
+	public void drawAskForColor() {
+		drawSeparator();
+		System.out.println("Write down an existing card color in CAPITALS :");
+	}
+
+	public void drawAskForValue() {
+		drawSeparator();
+		System.out.println("Write down an existing card value in CAPITALS :");
+	}
+
+	public void drawPlayerHint(Player player) {
+		System.out.println(player.readhint());
+	}
+
 	/**
 	 * Print players, box and board
 	 * 
 	 * @param data Game data
 	 */
 	public void draw(Data data) {
+		drawSeparator();
 		drawPlayersHand(data.getPlayers());
 		drawDeck(data.getDeckSize());
 		drawBox(data.getBox());
