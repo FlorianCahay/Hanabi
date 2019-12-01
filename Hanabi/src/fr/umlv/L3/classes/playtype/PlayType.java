@@ -1,4 +1,4 @@
-package fr.umlv.L3.classes.others;
+package fr.umlv.L3.classes.playtype;
 
 import fr.umlv.L3.classes.elements.Color;
 import fr.umlv.L3.classes.elements.Token;
@@ -7,6 +7,20 @@ import fr.umlv.L3.mvc.View;
 
 public enum PlayType {
 	HINT, DISCARD, PLAY;
+
+	@Override
+	public String toString() {
+		switch (this) {
+		case HINT:
+			return "Give a hint";
+		case DISCARD:
+			return "Dicard a card";
+		case PLAY:
+			return "Play a card";
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + this);
+		}
+	}
 
 	public void play(Data data, View view) {
 		switch (this) {

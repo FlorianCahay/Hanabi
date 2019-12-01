@@ -10,10 +10,11 @@ public abstract class AbstractHint implements Hint {
 	public String giveInfo(LinkedList<Card> hand) {
 		var str = new StringBuilder();
 		str.append("Cards in position ");
+		str.append("|");
 		for (int i = 0; i < hand.size(); i++) {
 			if (testCard(hand.get(i))) {
-				str.append(i+1);
-				str.append(" ");
+				str.append(i + 1);
+				str.append("|");
 			}
 		}
 		str.append(": ");

@@ -1,6 +1,6 @@
 package fr.umlv.L3.mvc;
 
-import fr.umlv.L3.classes.others.PlayType;
+import fr.umlv.L3.classes.playtype.PlayType;
 
 /**
  * 
@@ -12,7 +12,6 @@ public class Controller {
 
 		var data = new Data();
 		var view = new View();
-
 		var nbPlayers = setNbPlayers(data, view);
 
 		initialisePlayers(data, view, nbPlayers);
@@ -23,6 +22,7 @@ public class Controller {
 
 		while (!quit) {
 			data.setActualPlayer(i);
+			data.setPlayTypes();
 			view.draw(data);
 			playChoice = choseTypeOfPlay(data, view);
 			playChoice.play(data, view);
@@ -53,18 +53,8 @@ public class Controller {
 	 * @return value of choice
 	 */
 	public static PlayType choseTypeOfPlay(Data data, View view) {
-		view.drawAskTypeOfPlay(data.getActualPlayer());
-		switch (data.playerChoseTypeOfPlay(view)) {
-		case 1:
-			return PlayType.HINT;
-		case 2:
-			return PlayType.DISCARD;
-		case 3:
-			return PlayType.PLAY;
-		default:
-			throw new IllegalArgumentException("Unexpected value");
-		}
-
+		view.drawAskTypeOfPlay(data.getActualPlayer(), data.getPlayTypes());
+		return data.playerChoseTypeOfPlay(view);
 	}
 
 	/**

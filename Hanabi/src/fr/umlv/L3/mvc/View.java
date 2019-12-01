@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import fr.umlv.L3.classes.containers.Board;
 import fr.umlv.L3.classes.containers.Box;
 import fr.umlv.L3.classes.others.Player;
+import fr.umlv.L3.classes.playtype.PlayTypeList;
 
 /**
  * 
@@ -69,13 +70,13 @@ public class View {
 	 * 
 	 * @param playerName name of the actual player
 	 */
-	public void drawAskTypeOfPlay(Player player) {
+	public void drawAskTypeOfPlay(Player player, PlayTypeList playTypes) {
 		drawSeparator();
 		System.out.println(player.getName() + " it is your turn now");
 		drawPlayerHint(player);
 		drawSeparator();
-		System.out.println("1 : Give a hint\n2 : Discard a Card\n3 : Play a Card\n" + player.getName()
-				+ " Which play do you want to do write your choice number down :");
+		System.out.println(playTypes);
+		System.out.println(player.getName() + " Which play do you want to do write your choice number down :");
 	}
 
 	public void drawError(String error) {
@@ -87,9 +88,9 @@ public class View {
 	 * 
 	 * @param playerName Actual player name
 	 */
-	public void drawErrorTypeOfPlay(Player player) {
+	public void drawErrorTypeOfPlay(Player player, PlayTypeList playTypes) {
 		drawError("Type of play number must be an integer (1,2,3)");
-		drawAskTypeOfPlay(player);
+		drawAskTypeOfPlay(player, playTypes);
 	}
 
 	/**
@@ -192,6 +193,5 @@ public class View {
 		drawDeck(data.getDeckSize());
 		drawBox(data.getBox());
 		drawBoard(data.getBoard());
-
 	}
 }

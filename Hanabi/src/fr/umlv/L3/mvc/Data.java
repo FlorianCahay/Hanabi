@@ -11,9 +11,10 @@ import fr.umlv.L3.classes.hint.Hint;
 import fr.umlv.L3.classes.hint.HintColor;
 import fr.umlv.L3.classes.hint.HintValue;
 import fr.umlv.L3.classes.others.Deck;
-import fr.umlv.L3.classes.others.PlayType;
 import fr.umlv.L3.classes.others.Player;
 import fr.umlv.L3.classes.others.ScannerSystemIn;
+import fr.umlv.L3.classes.playtype.PlayType;
+import fr.umlv.L3.classes.playtype.PlayTypeList;
 
 /**
  * 
@@ -27,6 +28,7 @@ public class Data {
 	private final ArrayList<Player> players = new ArrayList<>();
 	private final ScannerSystemIn scanner = new ScannerSystemIn();
 	private Player actualPlayer = null;
+	private final PlayTypeList playTypes = new PlayTypeList();
 
 	/**
 	 * get data board
@@ -35,6 +37,10 @@ public class Data {
 	 */
 	public Board getBoard() {
 		return board;
+	}
+
+	public PlayTypeList getPlayTypes() {
+		return playTypes;
 	}
 
 	/**
@@ -97,8 +103,10 @@ public class Data {
 	 * @return choice of the player
 	 * @throws IllegalArgumentException if choice number is not include in [1,2]
 	 */
-	public int playerChoseTypeOfPlay(View view) {
-		return scanner.getValidInt("You can only chose 1,2 or 3 for play type", view, 1, PlayType.values().length);
+	public PlayType playerChoseTypeOfPlay(View view) {
+		int i = scanner.getValidInt("You can only chose a value from 1 to " + playTypes.size(), view, 1,
+				playTypes.size());
+		return playTypes.getPlayType(i);
 	}
 
 	/**
@@ -180,6 +188,16 @@ public class Data {
 	 */
 	public int getScore() {
 		return board.getScore();
+	}
+
+	public void setPlayTypes() {
+		playTypes.clear();
+		if (box.getNumberBlueToken() > 0) {
+			playTypes.add(PlayType.HINT);
+		}
+		if (board.getNumberBlueToken() > 0) {
+			playTypes.add(PlayType.DISCARD);
+		}
 	}
 
 	/**

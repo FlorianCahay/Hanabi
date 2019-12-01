@@ -103,13 +103,13 @@ public class Board extends Box {
 		str.append("last discarded card : ");
 		if (!discardedCards.isEmpty()) {
 			str.append(discardedCards.peek());
-			str.append("\n");
+
 		}
 		for (Color color : fireworks.keySet()) {
+			str.append("\n");
 			str.append(color);
 			str.append(" firework : ");
 			str.append(fireworks.get(color));
-			str.append("\n");
 		}
 
 		return str.toString();
