@@ -68,7 +68,8 @@ public class View {
 	/**
 	 * Print sentence asking a player to chose his next play
 	 * 
-	 * @param playerName name of the actual player
+	 * @param player    Player playing
+	 * @param playTypes Possible plays
 	 */
 	public void drawAskTypeOfPlay(Player player, PlayTypeList playTypes) {
 		drawSeparator();
@@ -79,6 +80,11 @@ public class View {
 		System.out.println(player.getName() + " Which play do you want to do write your choice number down :");
 	}
 
+	/**
+	 * Print an error
+	 * 
+	 * @param error string to add in the printed error
+	 */
 	public void drawError(String error) {
 		System.out.println("ERROR : " + error);
 	}
@@ -86,7 +92,8 @@ public class View {
 	/**
 	 * Print error for type of play
 	 * 
-	 * @param playerName Actual player name
+	 * @param player    Player playing
+	 * @param playTypes Possible plays
 	 */
 	public void drawErrorTypeOfPlay(Player player, PlayTypeList playTypes) {
 		drawError("Type of play number must be an integer (1,2,3)");
@@ -153,31 +160,51 @@ public class View {
 		System.out.println("remaining cards in deck : " + deckSize);
 	}
 
+	/**
+	 * Print a sentence asking for the number of players
+	 */
 	public void drawAskPlayers() {
 		drawSeparator();
 		System.out.println("How many players are you write it down ? (min 2 and max 5) ");
 	}
 
+	/**
+	 * Print a sentence asking for which player to give a hint
+	 */
 	public void drawAskHint() {
 		drawSeparator();
 		System.out.println("To which player do you want to give a hint ?");
 	}
 
+	/**
+	 * Print a sentence asking for the type hint to give
+	 */
 	public void drawAskColorOrValue() {
 		drawSeparator();
 		System.out.println("1 : Color\n2 : Value\nWrite down what type of hint you want to give :");
 	}
 
+	/**
+	 * Print a sentence asking for a card color
+	 */
 	public void drawAskForColor() {
 		drawSeparator();
 		System.out.println("Write down an existing card color in CAPITALS :");
 	}
 
+	/**
+	 * Print a sentence asking for a card value
+	 */
 	public void drawAskForValue() {
 		drawSeparator();
 		System.out.println("Write down an existing card value in CAPITALS :");
 	}
 
+	/**
+	 * Print player hint
+	 * 
+	 * @param player player which we want to print hint
+	 */
 	public void drawPlayerHint(Player player) {
 		System.out.println(player.readhint());
 	}

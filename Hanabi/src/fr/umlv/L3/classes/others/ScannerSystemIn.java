@@ -8,9 +8,23 @@ import fr.umlv.L3.classes.elements.Card;
 import fr.umlv.L3.classes.elements.Color;
 import fr.umlv.L3.mvc.View;
 
+/**
+ * 
+ * Represent a scanner scanning System.in entry
+ *
+ */
 public class ScannerSystemIn {
 	private final Scanner scanner = new Scanner(System.in);
 
+	/**
+	 * Get a valid int value input by user
+	 * 
+	 * @param min Minimum value
+	 * @param max Maximum value
+	 * @return a valid int value input by user
+	 * @throws InputMismatchException if the value not corresponding to a hint
+	 *                                include in min and max
+	 */
 	public int nextInt(int min, int max) {
 		var value = min - 1;
 		if (scanner.hasNextInt()) {
@@ -24,10 +38,21 @@ public class ScannerSystemIn {
 		return value;
 	}
 
+	/**
+	 * Get a valid string input by user
+	 * 
+	 * @return valid string input by user
+	 */
 	public String nextString() {
 		return scanner.next();
 	}
 
+	/**
+	 * Get a valid color input by user
+	 * 
+	 * @return valid color
+	 * @throws IllegalStateException if input not corresponding to any color
+	 */
 	public Color nextColor() {
 		switch (scanner.next()) {
 		case "RED":
@@ -46,6 +71,15 @@ public class ScannerSystemIn {
 		}
 	}
 
+	/**
+	 * Keep trying to get a valid int value
+	 * 
+	 * @param error error to print if not valid value
+	 * @param view  Game view
+	 * @param min   Minimum value
+	 * @param max   Maximum value
+	 * @return valid int value include in min and max
+	 */
 	public int getValidInt(String error, View view, int min, int max) {
 		var value = 0;
 		while (true) {
@@ -59,6 +93,13 @@ public class ScannerSystemIn {
 		}
 	}
 
+	/**
+	 * Keep trying to get a valid string
+	 * 
+	 * @param error error to print if not valid string
+	 * @param view  Game view
+	 * @return valid string
+	 */
 	public String getValidString(String error, View view) {
 		var str = new String();
 		while (true) {
@@ -72,6 +113,12 @@ public class ScannerSystemIn {
 		}
 	}
 
+	/**
+	 * Keep trying to get a valid color
+	 * 
+	 * @param view Game view
+	 * @return valid color
+	 */
 	public Color getValidColor(View view) {
 		var color = Color.WHITE;
 		while (true) {
@@ -85,6 +132,13 @@ public class ScannerSystemIn {
 		}
 	}
 
+	/**
+	 * Keep trying to get a valid player
+	 * 
+	 * @param view    Game view
+	 * @param players Player list
+	 * @return existing player
+	 */
 	public Player getValidPlayer(View view, ArrayList<Player> players) {
 		var name = new String();
 		while (true) {
@@ -99,6 +153,13 @@ public class ScannerSystemIn {
 
 	}
 
+	/**
+	 * Keep trying to get a valid card from hand of the player
+	 * 
+	 * @param view   Game view
+	 * @param player Player to get the hand
+	 * @return valid card contained in player hand
+	 */
 	public Card getValidCardFromHand(View view, Player player) {
 		var card = new Card(getValidInt("Card value has to be include in [1,5]", view, 1, 5), getValidColor(view));
 		while (!player.handContains(card)) {

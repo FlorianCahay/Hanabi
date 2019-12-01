@@ -8,8 +8,8 @@ import fr.umlv.L3.classes.elements.Color;
 import fr.umlv.L3.classes.others.Deck;
 
 /**
- * Represent board game with a token Box, a HashMap for fireworks and an
- * ArrayList for the discarded cards
+ * Represent board game with a token Box, a HashMap for fireworks and a Stack
+ * for the discarded cards
  */
 public class Board extends Box {
 	private final Stack<Card> discardedCards = new Stack<>();
@@ -58,9 +58,8 @@ public class Board extends Box {
 			}
 			return true;
 		}
-		if (!fireworks.containsKey(card.getColor()) || fireworks.get(card.getColor()) != card.getValue() - 1) { // add
-																												// //
-																												// others
+		if (!fireworks.containsKey(card.getColor())
+				|| fireworks.get(card.getColor()) != card.getValue() - 1) { /* add other */
 			return false;
 		}
 		return true;

@@ -65,7 +65,7 @@ public class Box {
 	/**
 	 * get the number of blue tokens in the box
 	 * 
-	 * @return the number of blue tokens
+	 * @return the number of blue tokens in the box
 	 */
 	public int getNumberBlueToken() {
 		return getNumberToken(new Token(Color.BLUE));
@@ -74,7 +74,7 @@ public class Box {
 	/**
 	 * get the number of red tokens in the box
 	 * 
-	 * @return the number of red tokens
+	 * @return the number of red tokens in the box
 	 */
 	public int getNumberRedToken() {
 		return getNumberToken(new Token(Color.RED));

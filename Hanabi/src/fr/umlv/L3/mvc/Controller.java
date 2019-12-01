@@ -72,6 +72,13 @@ public class Controller {
 		return false;
 	}
 
+	/**
+	 * get a valid number of playing players
+	 * 
+	 * @param data Game data
+	 * @param view Game view
+	 * @return valid number of players
+	 */
 	public static int setNbPlayers(Data data, View view) {
 		view.drawAskPlayers();
 		return data.inputNbPlayers(view);

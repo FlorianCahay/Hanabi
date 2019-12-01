@@ -4,6 +4,11 @@ import java.util.LinkedList;
 
 import fr.umlv.L3.classes.elements.Card;
 
+/**
+ * 
+ * Represent an abstract class for hints
+ *
+ */
 public abstract class AbstractHint implements Hint {
 
 	@Override

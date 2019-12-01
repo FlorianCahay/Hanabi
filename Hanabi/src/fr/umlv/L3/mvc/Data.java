@@ -39,6 +39,11 @@ public class Data {
 		return board;
 	}
 
+	/**
+	 * get data playTypes
+	 * 
+	 * @return data playTypes
+	 */
 	public PlayTypeList getPlayTypes() {
 		return playTypes;
 	}
@@ -100,6 +105,7 @@ public class Data {
 	/**
 	 * get which type of play the player want to do
 	 * 
+	 * @param view Game view
 	 * @return choice of the player
 	 * @throws IllegalArgumentException if choice number is not include in [1,2]
 	 */
@@ -143,16 +149,28 @@ public class Data {
 	/**
 	 * create card base on input from user
 	 * 
+	 * @param view Game view
 	 * @return new Card
 	 */
 	public Card inputCard(View view) {
 		return scanner.getValidCardFromHand(view, actualPlayer);
 	}
 
+	/**
+	 * get a valid number of players
+	 * 
+	 * @param view Game view
+	 * @return valid number of players
+	 */
 	public int inputNbPlayers(View view) {
 		return scanner.getValidInt("This game can be played from 2 to 5 players", view, 2, 5);
 	}
 
+	/**
+	 * Actual player give a hint to any player
+	 * 
+	 * @param view Game view
+	 */
 	public void giveHint(View view) {
 		var player = scanner.getValidPlayer(view, players);
 		view.drawAskColorOrValue();
@@ -190,6 +208,9 @@ public class Data {
 		return board.getScore();
 	}
 
+	/**
+	 * reset the playTypes list and add possible plays
+	 */
 	public void setPlayTypes() {
 		playTypes.clear();
 		if (box.getNumberBlueToken() > 0) {
@@ -202,6 +223,9 @@ public class Data {
 
 	/**
 	 * add a player to players list
+	 * 
+	 * @param view      Game view
+	 * @param nbPlayers Number of playing players
 	 */
 	public void addPlayer(View view, int nbPlayers) {
 		players.add(new Player(scanner.getValidString("Your name as to be a string of at least 1 character", view),

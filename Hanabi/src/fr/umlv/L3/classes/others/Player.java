@@ -17,11 +17,12 @@ public class Player {
 	private String hint;
 
 	/**
-	 * Constructor initializing a Player with his name and picking five cards to
-	 * create his hand
+	 * Constructor initializing a Player with his name, picking cards from deck to
+	 * create his hand and setting hint to none
 	 * 
-	 * @param name Player name
-	 * @param deck Game deck
+	 * @param name      Player name
+	 * @param deck      Game deck
+	 * @param nbPlayers Number of players playing the game
 	 */
 	public Player(String name, Deck deck, int nbPlayers) {
 		this.name = Objects.requireNonNull(name);
@@ -74,10 +75,20 @@ public class Player {
 		return hand.contains(card);
 	}
 
+	/**
+	 * Set the hint string from information of a hint
+	 * 
+	 * @param hint Hint to set for the player
+	 */
 	public void setHint(Hint hint) {
 		this.hint = hint.giveInfo(hand);
 	}
 
+	/**
+	 * Reset the hint to none and return the corresponding string
+	 * 
+	 * @return last hint gave to the player
+	 */
 	public String readhint() {
 		String hintString = hint;
 		hint = "none";

@@ -5,23 +5,20 @@ import fr.umlv.L3.classes.elements.Token;
 import fr.umlv.L3.mvc.Data;
 import fr.umlv.L3.mvc.View;
 
+/**
+ * 
+ * Represent an enumerate for each type of play
+ *
+ */
 public enum PlayType {
 	HINT, DISCARD, PLAY;
 
-	@Override
-	public String toString() {
-		switch (this) {
-		case HINT:
-			return "Give a hint";
-		case DISCARD:
-			return "Dicard a card";
-		case PLAY:
-			return "Play a card";
-		default:
-			throw new IllegalArgumentException("Unexpected value: " + this);
-		}
-	}
-
+	/**
+	 * Make the corresponding play play
+	 * 
+	 * @param data Game data
+	 * @param view Game view
+	 */
 	public void play(Data data, View view) {
 		switch (this) {
 		case HINT:
@@ -40,6 +37,20 @@ public enum PlayType {
 			data.playerPlayCard(data.inputCard(view));
 			view.drawSeparator();
 			break;
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + this);
+		}
+	}
+
+	@Override
+	public String toString() {
+		switch (this) {
+		case HINT:
+			return "Give a hint";
+		case DISCARD:
+			return "Dicard a card";
+		case PLAY:
+			return "Play a card";
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + this);
 		}
