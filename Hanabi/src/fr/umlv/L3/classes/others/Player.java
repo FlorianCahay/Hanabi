@@ -54,6 +54,10 @@ public class Player {
 		return name;
 	}
 
+	public int getHandSize() {
+		return hand.size();
+	}
+
 	/**
 	 * remove card from player hand
 	 * 
@@ -82,6 +86,10 @@ public class Player {
 	 */
 	public void setHint(Hint hint) {
 		this.hint = hint.giveInfo(hand);
+	}
+
+	public Card getCard(int index) {
+		return hand.get(index);
 	}
 
 	/**

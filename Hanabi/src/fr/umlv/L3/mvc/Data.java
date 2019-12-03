@@ -134,16 +134,18 @@ public class Data {
 	 * player play card on board
 	 * 
 	 * @param card Card to play
+	 * @return true if card is played, false if card is discarded
 	 * 
 	 */
-	public void playerPlayCard(Card card) {
+	public boolean playerPlayCard(Card card) {
 		if (board.isAddable(card)) {
 			actualPlayer.discardCard(card);
 			actualPlayer.pickCardInDeck(deck);
 			board.addCard(card);
-			return;
+			return true;
 		}
 		playerDiscardCard(card, new Token(Color.RED));
+		return false;
 	}
 
 	/**
@@ -172,7 +174,7 @@ public class Data {
 	 * @param view Game view
 	 */
 	public void giveHint(View view) {
-		var player = scanner.getValidPlayer(view, players);
+		var player = scanner.getValidPlayer(view, players, actualPlayer);
 		view.drawAskColorOrValue();
 		var choice = scanner.getValidInt("You can only give hint about color or value", view, 1, 2);
 		Hint hint;
@@ -213,12 +215,13 @@ public class Data {
 	 */
 	public void setPlayTypes() {
 		playTypes.clear();
-		if (box.getNumberBlueToken() > 0) {
-			playTypes.add(PlayType.HINT);
-		}
 		if (board.getNumberBlueToken() > 0) {
 			playTypes.add(PlayType.DISCARD);
 		}
+		if (box.getNumberBlueToken() > 0) {
+			playTypes.add(PlayType.HINT);
+		}
+
 	}
 
 	/**
@@ -226,9 +229,17 @@ public class Data {
 	 * 
 	 * @param view      Game view
 	 * @param nbPlayers Number of playing players
+	 * @return true if player is added, false otherwise
 	 */
-	public void addPlayer(View view, int nbPlayers) {
-		players.add(new Player(scanner.getValidString("Your name as to be a string of at least 1 character", view),
-				deck, nbPlayers));
+	public boolean addPlayer(View view, int nbPlayers) {
+		var name = scanner.getValidString("Your name as to be a string of at least 1 character", view);
+		for (Player player : players) {
+			if (player.getName().equals(name)) {
+				view.drawError("The name you wrote already exists");
+				return false;
+			}
+		}
+		players.add(new Player(name, deck, nbPlayers));
+		return true;
 	}
 }

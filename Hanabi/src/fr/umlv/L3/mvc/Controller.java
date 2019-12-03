@@ -41,7 +41,9 @@ public class Controller {
 	public static void initialisePlayers(Data data, View view, int nbPlayers) {
 		for (int i = 0; i < nbPlayers; i++) {
 			view.drawAskName(i + 1);
-			data.addPlayer(view, nbPlayers);
+			if (!data.addPlayer(view, nbPlayers)) {
+				i--;
+			}
 		}
 	}
 

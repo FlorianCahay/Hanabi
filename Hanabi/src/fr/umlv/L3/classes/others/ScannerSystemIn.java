@@ -135,16 +135,17 @@ public class ScannerSystemIn {
 	/**
 	 * Keep trying to get a valid player
 	 * 
-	 * @param view    Game view
-	 * @param players Player list
+	 * @param view         Game view
+	 * @param players      Player list
+	 * @param actualPlayer Playing player
 	 * @return existing player
 	 */
-	public Player getValidPlayer(View view, ArrayList<Player> players) {
+	public Player getValidPlayer(View view, ArrayList<Player> players, Player actualPlayer) {
 		var name = new String();
 		while (true) {
 			name = getValidString("Your name as to be a string of at least 1 character", view);
 			for (Player player : players) {
-				if (player.getName().equals(name)) {
+				if (player.getName().equals(name) && !player.getName().equals(actualPlayer.getName())) {
 					return player;
 				}
 			}
@@ -161,11 +162,8 @@ public class ScannerSystemIn {
 	 * @return valid card contained in player hand
 	 */
 	public Card getValidCardFromHand(View view, Player player) {
-		var card = new Card(getValidInt("Card value has to be include in [1,5]", view, 1, 5), getValidColor(view));
-		while (!player.handContains(card)) {
-			view.drawErrorCardChoseNotInHand(player);
-			card = new Card(getValidInt("Card value has to be include in [1,5]", view, 1, 5), getValidColor(view));
-		}
+		var card = player.getCard(getValidInt("Card value has to be include in [1," + player.getHandSize() + "]", view,
+				1, player.getHandSize()) - 1);
 		return card;
 	}
 }

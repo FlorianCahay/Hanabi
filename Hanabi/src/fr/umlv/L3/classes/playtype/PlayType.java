@@ -31,22 +31,39 @@ public enum PlayType {
 	public void play(Data data, View view) {
 		switch (this) {
 		case HINT:
-			view.drawAskHint();
-			data.giveHint(view);
+			hint(data, view);
 			break;
 		case DISCARD:
-			view.drawPlayer(data.getActualPlayer());
-			view.drawAskCard();
-			data.playerDiscardCard(data.inputCard(view), new Token(Color.BLUE));
+			discardCard(data, view);
 			break;
 		case PLAY:
-			view.drawPlayer(data.getActualPlayer());
-			view.drawAskCard();
-			data.playerPlayCard(data.inputCard(view));
+			playCard(data, view);
 			break;
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + this);
 		}
+	}
+
+	private void hint(Data data, View view) {
+		view.drawAskHint();
+		data.giveHint(view);
+	}
+
+	private void discardCard(Data data, View view) {
+		view.drawAskCard();
+		view.drawPlayer(data.getActualPlayer());
+		data.playerDiscardCard(data.inputCard(view), new Token(Color.BLUE));
+	}
+
+	private void playCard(Data data, View view) {
+		view.drawAskCard();
+		view.drawPlayer(data.getActualPlayer());
+		var card = data.inputCard(view);
+		if (data.playerPlayCard(card)) {
+			view.drawPlayedCard(card);
+			return;
+		}
+		view.drawDiscardedCard(card);
 	}
 
 	@Override

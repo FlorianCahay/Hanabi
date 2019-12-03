@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import fr.umlv.L3.classes.containers.Board;
 import fr.umlv.L3.classes.containers.Box;
+import fr.umlv.L3.classes.elements.Card;
 import fr.umlv.L3.classes.others.Player;
 import fr.umlv.L3.classes.playtype.PlayTypeList;
 
@@ -61,8 +62,7 @@ public class View {
 	 */
 	public void drawAskCard() {
 		drawSeparator();
-		System.out.println(
-				"Which card do you want from your hand ? (write down number press enter then write down color in CAPITALS press enter)");
+		System.out.println("Which card do you want from your hand ? (write down card position)");
 	}
 
 	/**
@@ -197,7 +197,25 @@ public class View {
 	 */
 	public void drawAskForValue() {
 		drawSeparator();
-		System.out.println("Write down an existing card value in CAPITALS :");
+		System.out.println("Write down an existing card value :");
+	}
+
+	/**
+	 * Print information that the card has been played
+	 * 
+	 * @param card card to show
+	 */
+	public void drawPlayedCard(Card card) {
+		System.out.println(card + " has been played");
+	}
+
+	/**
+	 * Print information that the card has been discarded
+	 * 
+	 * @param card card to show
+	 */
+	public void drawDiscardedCard(Card card) {
+		System.out.println(card + " has been discarded");
 	}
 
 	/**
