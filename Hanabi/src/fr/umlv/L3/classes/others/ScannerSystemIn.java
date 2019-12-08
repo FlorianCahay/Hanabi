@@ -3,6 +3,7 @@ package fr.umlv.L3.classes.others;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.function.Supplier;
 
 import fr.umlv.L3.classes.elements.Card;
 import fr.umlv.L3.classes.elements.Color;
@@ -71,6 +72,19 @@ public class ScannerSystemIn {
 		}
 	}
 
+	private Object getValid(String error, View view, Supplier<Object> next) {
+		var read = new Object();
+		while (true) {
+			try {
+				read = next.get();
+			} catch (Exception e) {
+				view.drawError(error);
+				continue;
+			}
+			return read;
+		}
+	}
+
 	/**
 	 * Keep trying to get a valid int value
 	 * 
@@ -81,16 +95,7 @@ public class ScannerSystemIn {
 	 * @return valid int value include in min and max
 	 */
 	public int getValidInt(String error, View view, int min, int max) {
-		var value = 0;
-		while (true) {
-			try {
-				value = nextInt(min, max);
-			} catch (Exception e) {
-				view.drawError(error);
-				continue;
-			}
-			return value;
-		}
+		return (int) getValid(error, view, () -> nextInt(min, max));
 	}
 
 	/**
@@ -101,16 +106,7 @@ public class ScannerSystemIn {
 	 * @return valid string
 	 */
 	public String getValidString(String error, View view) {
-		var str = new String();
-		while (true) {
-			try {
-				str = nextString();
-			} catch (Exception e) {
-				view.drawError(error);
-				continue;
-			}
-			return str;
-		}
+		return (String) getValid(error, view, () -> nextString());
 	}
 
 	/**
@@ -120,16 +116,8 @@ public class ScannerSystemIn {
 	 * @return valid color
 	 */
 	public Color getValidColor(View view) {
-		var color = Color.WHITE;
-		while (true) {
-			try {
-				color = nextColor();
-			} catch (Exception e) {
-				view.drawError("Color string must be in capitals and be an existing color of the fireworks");
-				continue;
-			}
-			return color;
-		}
+		return (Color) getValid("Color string must be in capitals and be an existing color of the fireworks", view,
+				() -> nextColor());
 	}
 
 	/**
