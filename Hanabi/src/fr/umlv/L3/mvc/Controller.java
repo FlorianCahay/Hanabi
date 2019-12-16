@@ -9,26 +9,29 @@ import fr.umlv.L3.classes.playtype.PlayType;
  */
 public class Controller {
 	public static void main(String[] args) {
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				var data = new Data();
+				var view = new View();
+				var nbPlayers = setNbPlayers(data, view);
 
-		var data = new Data();
-		var view = new View();
-		var nbPlayers = setNbPlayers(data, view);
+				initialisePlayers(data, view, nbPlayers);
 
-		initialisePlayers(data, view, nbPlayers);
+				var i = 0;
+				PlayType playChoice;
+				var quit = false;
 
-		var i = 0;
-		PlayType playChoice;
-		var quit = false;
-
-		while (!quit) {
-			data.setActualPlayer(i);
-			data.setPlayTypes();
-			view.draw(data);
-			playChoice = choseTypeOfPlay(data, view);
-			playChoice.play(data, view);
-			quit = isGameOver(data, view);
-			i = (i + 1) % nbPlayers;
-		}
+				while (!quit) {
+					data.setActualPlayer(i);
+					data.setPlayTypes();
+					view.draw(data);
+					playChoice = choseTypeOfPlay(data, view);
+					playChoice.play(data, view);
+					quit = isGameOver(data, view);
+					i = (i + 1) % nbPlayers;
+				}
+			}
+		});
 	}
 
 	/**
