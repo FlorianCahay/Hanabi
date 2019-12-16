@@ -8,22 +8,21 @@ import fr.umlv.L3.classes.elements.Color;
 import fr.umlv.L3.classes.others.Deck;
 
 /**
- * Represent board game with a token Box, a HashMap for fireworks and a Stack
- * for the discarded cards
+ * Represent board game with a token Box, fireworks and the discarded cards.
  */
 public class Board extends Box {
 	private final Stack<Card> discardedCards = new Stack<>();
 	private final HashMap<Color, Integer> fireworks = new HashMap<>();
 
 	/**
-	 * Constructor initializing board with 0 blue token and 3 red tokens
+	 * Constructs a board with 0 blue token and 3 red tokens.
 	 */
 	public Board() {
 		super(0, 3);
 	}
 
 	/**
-	 * Add card to discarded cards
+	 * Add card to discarded cards.
 	 * 
 	 * @param card Card to add
 	 */
@@ -32,10 +31,10 @@ public class Board extends Box {
 	}
 
 	/**
-	 * Add card to fireworks if it is addable
+	 * Add the specified card to fireworks if it is possible.
 	 * 
-	 * @param card Card to add
-	 * @throws IllegalArgumentException if card is not addable
+	 * @param card card to add
+	 * @throws IllegalArgumentException if it's impossible to add the card
 	 */
 	public void addCard(Card card) {
 		if (!isAddable(card)) {
@@ -46,10 +45,10 @@ public class Board extends Box {
 	}
 
 	/**
-	 * Test if a card is addable to fireworks
+	 * Test if it's possible to add the  specified card to fireworks.
 	 * 
-	 * @param card Card to test
-	 * @return True if the card is addable, False otherwise
+	 * @param card card to test
+	 * @return true it's possible to add the card, false otherwise
 	 */
 	public boolean isAddable(Card card) {
 		if (card.getValue() == 1) { // add a 1
@@ -92,6 +91,9 @@ public class Board extends Box {
 		return fireworks.entrySet().stream().mapToInt(k -> k.getValue()).sum();
 	}
 
+	/**
+	 * Returns a string representation of the contents of the board.
+	 */
 	@Override
 	public String toString() {
 		var str = new StringBuilder();

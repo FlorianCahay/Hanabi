@@ -7,15 +7,19 @@ import fr.umlv.L3.mvc.View;
 
 /**
  * 
- * Represent an enumerate for each type of play
+ * Represent an enumerate for each type of play.
  *
  */
 public enum PlayType {
-	HINT("Give a hint"), DISCARD("Discard a card"), PLAY("Play a card");
+	HINT("Give a hint"), 
+	DISCARD("Discard a card"), 
+	PLAY("Play a card");
 
 	private final String string;
 
 	/**
+	 * Constructs a PlayType.
+	 * 
 	 * @param string
 	 */
 	private PlayType(String string) {
@@ -23,24 +27,24 @@ public enum PlayType {
 	}
 
 	/**
-	 * Make the corresponding play
+	 * Make the corresponding play.
 	 * 
-	 * @param data Game data
-	 * @param view Game view
+	 * @param data game data
+	 * @param view game view
 	 */
 	public void play(Data data, View view) {
 		switch (this) {
-		case HINT:
-			hint(data, view);
-			break;
-		case DISCARD:
-			discardCard(data, view);
-			break;
-		case PLAY:
-			playCard(data, view);
-			break;
-		default:
-			throw new IllegalArgumentException("Unexpected value: " + this);
+			case HINT:
+				hint(data, view);
+				break;
+			case DISCARD:
+				discardCard(data, view);
+				break;
+			case PLAY:
+				playCard(data, view);
+				break;
+			default:
+				throw new IllegalArgumentException("Unexpected value: " + this);
 		}
 	}
 
@@ -66,6 +70,9 @@ public enum PlayType {
 		view.drawDiscardedCard(card);
 	}
 
+	/**
+	 * Returns a string representation of the type.
+	 */
 	@Override
 	public String toString() {
 		return string;

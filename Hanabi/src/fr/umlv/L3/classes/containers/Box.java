@@ -6,13 +6,13 @@ import fr.umlv.L3.classes.elements.Color;
 import fr.umlv.L3.classes.elements.Token;
 
 /**
- * Represent a token container with a HashMap
+ * Represent a token container.
  */
 public class Box {
 	private final HashMap<Token, Integer> box = new HashMap<>();
 
 	/**
-	 * Constructor initializing Box with blue and red tokens
+	 * Constructs a Box with blue and red tokens.
 	 * 
 	 * @param blueToken number of blue tokens to add
 	 * @param redToken  number of red tokens to add
@@ -27,17 +27,17 @@ public class Box {
 	}
 
 	/**
-	 * Constructor initializing Box with 8 blue tokens and 0 red tokens
+	 * Constructs a Box with 8 blue tokens and 0 red tokens.
 	 */
 	public Box() {
 		this(8, 0);
 	}
 
 	/**
-	 * Add a token to the box
+	 * Add the specified token to the box.
 	 * 
-	 * @param token Token with a precise color
-	 * @param value Number of token to add
+	 * @param token token with a precise color
+	 * @param value number of token to add
 	 */
 	public void add(Token token, int value) {
 		box.computeIfPresent(token, (k, v) -> v + value);
@@ -45,10 +45,10 @@ public class Box {
 	}
 
 	/**
-	 * Remove a token from the box
+	 * Remove the specified token from the box.
 	 * 
 	 * @param token Token to remove from the box
-	 * @return True if the token has been removed, False otherwise
+	 * @return true if the token has been removed, false otherwise
 	 */
 	public boolean remove(Token token) {
 		if (box.get(token) == 0) {
@@ -63,7 +63,7 @@ public class Box {
 	}
 
 	/**
-	 * get the number of blue tokens in the box
+	 * Get the number of blue tokens in the box.
 	 * 
 	 * @return the number of blue tokens in the box
 	 */
@@ -72,7 +72,7 @@ public class Box {
 	}
 
 	/**
-	 * get the number of red tokens in the box
+	 * Get the number of red tokens in the box.
 	 * 
 	 * @return the number of red tokens in the box
 	 */
@@ -81,7 +81,7 @@ public class Box {
 	}
 
 	/**
-	 * get the box name
+	 * Get the box name.
 	 * 
 	 * @return Name of the box
 	 */
@@ -89,6 +89,9 @@ public class Box {
 		return "Box";
 	}
 
+	/**
+	 * Returns a string representation of the contents of the box.
+	 */
 	@Override
 	public String toString() {
 		return typeOfBox() + " contains " + getNumberBlueToken() + " blue tokens and " + getNumberRedToken()

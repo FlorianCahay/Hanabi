@@ -8,15 +8,15 @@ import fr.umlv.L3.classes.elements.Color;
 
 /**
  * 
- * Represent a stack of card
+ * Represent a stack of card.
  *
  */
 public class Deck {
 	private final Stack<Card> deck = new Stack<>();
 
 	/**
-	 * Constructor initializing deck with 50 cards ((3x1,2x2,2x3,2x4,1x5) for each
-	 * color) and shuffle it
+	 * Constructs a deck with 50 cards ((3x1,2x2,2x3,2x4,1x5) for each
+	 * color) and shuffle it.
 	 */
 	public Deck() {
 		for (Color color : Color.values()) {
@@ -38,16 +38,16 @@ public class Deck {
 	}
 
 	/**
-	 * Test if the deck is empty
+	 * Test if the deck is empty.
 	 * 
-	 * @return True if the deck is empty, False otherwise
+	 * @return true if the deck is empty, false otherwise
 	 */
 	public boolean isEmpty() {
 		return deck.isEmpty();
 	}
 
 	/**
-	 * Get deck size
+	 * Get deck size.
 	 * 
 	 * @return deck size
 	 */
@@ -56,7 +56,7 @@ public class Deck {
 	}
 
 	/**
-	 * pick a card in the deck and return it
+	 * Pick a card at the top of the deck and return it.
 	 * 
 	 * @return card pop from the deck
 	 */

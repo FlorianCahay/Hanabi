@@ -8,7 +8,7 @@ import fr.umlv.L3.classes.hint.Hint;
 
 /**
  * 
- * Represent a player with a name and a hand of cards
+ * Represent a player with a name and a hand of cards.
  *
  */
 public class Player {
@@ -17,12 +17,11 @@ public class Player {
 	private String hint;
 
 	/**
-	 * Constructor initializing a Player with his name, picking cards from deck to
-	 * create his hand and setting hint to none
+	 * Constructs a Player with his name, his hand and setting his hint to none.
 	 * 
-	 * @param name      Player name
-	 * @param deck      Game deck
-	 * @param nbPlayers Number of players playing the game
+	 * @param name player name
+	 * @param deck game deck
+	 * @param nbPlayers number of players
 	 */
 	public Player(String name, Deck deck, int nbPlayers) {
 		this.name = Objects.requireNonNull(name);
@@ -37,16 +36,16 @@ public class Player {
 	}
 
 	/**
-	 * add a card in player hand from the deck
+	 * Add the specified card in player hand from the deck.
 	 * 
-	 * @param deck Game deck
+	 * @param deck game deck
 	 */
 	public void pickCardInDeck(Deck deck) {
 		hand.add(deck.pickCard());
 	}
 
 	/**
-	 * get player name
+	 * Get player name.
 	 * 
 	 * @return player name
 	 */
@@ -54,14 +53,18 @@ public class Player {
 		return name;
 	}
 
+	/**
+	 * Get number of cards in the hand.
+	 * @return number of cards
+	 */
 	public int getHandSize() {
 		return hand.size();
 	}
 
 	/**
-	 * remove card from player hand
+	 * Remove specified card from player hand.
 	 * 
-	 * @param card Card to remove
+	 * @param card card to remove
 	 */
 	public void discardCard(Card card) {
 		if (!hand.remove(card)) {
@@ -70,30 +73,35 @@ public class Player {
 	}
 
 	/**
-	 * Test if the card is contained in the player hand
+	 * Test if the specified card is contained in the player hand.
 	 * 
-	 * @param card Card to test
-	 * @return True if card is contained in player hand, False otherwise
+	 * @param card card to test
+	 * @return true if the card is contained in player hand, false otherwise
 	 */
 	public boolean handContains(Card card) {
 		return hand.contains(card);
 	}
 
 	/**
-	 * Set the hint string from information of a hint
+	 * Set the hint for the player thanks to the specified hint.
 	 * 
-	 * @param hint Hint to set for the player
+	 * @param hint hint to set for the player
 	 */
 	public void setHint(Hint hint) {
 		this.hint = hint.giveInfo(hand);
 	}
 
+	/**
+	 * Get the card at the specified index.
+	 * @param index index of one card
+	 * @return card at the specified index
+	 */
 	public Card getCard(int index) {
 		return hand.get(index);
 	}
 
 	/**
-	 * Reset the hint to none and return the corresponding string
+	 * Reset the hint to none and return the corresponding string.
 	 * 
 	 * @return last hint gave to the player
 	 */
@@ -120,6 +128,9 @@ public class Player {
 		return Objects.equals(name, other.name);
 	}
 
+	/**
+	 * Returns a string representation of the player.
+	 */
 	@Override
 	public String toString() {
 		return name + " : " + hand.toString();

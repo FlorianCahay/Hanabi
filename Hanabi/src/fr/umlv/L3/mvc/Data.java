@@ -18,7 +18,7 @@ import fr.umlv.L3.classes.playtype.PlayTypeList;
 
 /**
  * 
- * Represent the data game manager
+ * Represent the data game manager.
  *
  */
 public class Data {
@@ -31,7 +31,7 @@ public class Data {
 	private final PlayTypeList playTypes = new PlayTypeList();
 
 	/**
-	 * get data board
+	 * Get data board.
 	 * 
 	 * @return data board
 	 */
@@ -40,7 +40,7 @@ public class Data {
 	}
 
 	/**
-	 * get data playTypes
+	 * Get data playTypes.
 	 * 
 	 * @return data playTypes
 	 */
@@ -49,7 +49,7 @@ public class Data {
 	}
 
 	/**
-	 * get data box
+	 * Get data box.
 	 * 
 	 * @return data box
 	 */
@@ -58,7 +58,7 @@ public class Data {
 	}
 
 	/**
-	 * get data players
+	 * Get data players.
 	 * 
 	 * @return data players
 	 */
@@ -67,7 +67,7 @@ public class Data {
 	}
 
 	/**
-	 * set data actual player
+	 * Set data actual player.
 	 * 
 	 * @param actualPlayerIndex which player to get from players
 	 */
@@ -76,7 +76,7 @@ public class Data {
 	}
 
 	/**
-	 * Get data deck size
+	 * Get data deck size.
 	 * 
 	 * @return Data deck size
 	 */
@@ -85,7 +85,7 @@ public class Data {
 	}
 
 	/**
-	 * get data actual player name
+	 * Get data actual player name.
 	 * 
 	 * @return data actual player name
 	 */
@@ -94,7 +94,7 @@ public class Data {
 	}
 
 	/**
-	 * get data actual player
+	 * Get data actual player.
 	 * 
 	 * @return data actual player
 	 */
@@ -103,16 +103,16 @@ public class Data {
 	}
 
 	/**
-	 * Close the scanner
+	 * Close the scanner.
 	 */
 	public void closeScanner() {
 		scanner.close();
 	}
 
 	/**
-	 * get which type of play the player want to do
+	 * Get which type of play the player want to do.
 	 * 
-	 * @param view Game view
+	 * @param view game view
 	 * @return choice of the player
 	 * @throws IllegalArgumentException if choice number is not include in [1,2]
 	 */
@@ -123,10 +123,10 @@ public class Data {
 	}
 
 	/**
-	 * player discard a card in discarded cards
+	 * Player discard the specified card in discarded cards.
 	 * 
-	 * @param card  Card to discard
-	 * @param token Token to move from board to box
+	 * @param card card to discard
+	 * @param token token to move from board to box
 	 */
 	public void playerDiscardCard(Card card, Token token) {
 		if (board.remove(token)) {
@@ -138,9 +138,9 @@ public class Data {
 	}
 
 	/**
-	 * player play card on board
+	 * Player play the specified card on the board.
 	 * 
-	 * @param card Card to play
+	 * @param card card to play
 	 * @return true if card is played, false if card is discarded
 	 * 
 	 */
@@ -156,9 +156,9 @@ public class Data {
 	}
 
 	/**
-	 * create card base on input from user
+	 * Create card base on input from user.
 	 * 
-	 * @param view Game view
+	 * @param view game view
 	 * @return new Card
 	 */
 	public Card inputCard(View view) {
@@ -166,9 +166,9 @@ public class Data {
 	}
 
 	/**
-	 * get a valid number of players
+	 * Get a valid number of players.
 	 * 
-	 * @param view Game view
+	 * @param view game view
 	 * @return valid number of players
 	 */
 	public int inputNbPlayers(View view) {
@@ -176,9 +176,9 @@ public class Data {
 	}
 
 	/**
-	 * Actual player give a hint to any player
+	 * Actual player give a hint to any player.
 	 * 
-	 * @param view Game view
+	 * @param view game view
 	 */
 	public void giveHint(View view) {
 		var player = scanner.getValidPlayer(view, players, actualPlayer);
@@ -200,7 +200,7 @@ public class Data {
 	}
 
 	/**
-	 * Test if the game is over
+	 * Test if the game is over.
 	 * 
 	 * @return True if the game is over, False otherwise
 	 */
@@ -209,7 +209,7 @@ public class Data {
 	}
 
 	/**
-	 * get score from board
+	 * Get score from board.
 	 * 
 	 * @return score
 	 */
@@ -218,7 +218,7 @@ public class Data {
 	}
 
 	/**
-	 * reset the playTypes list and add possible plays
+	 * Reset the playTypes list and add possible plays.
 	 */
 	public void setPlayTypes() {
 		playTypes.clear();
@@ -232,10 +232,10 @@ public class Data {
 	}
 
 	/**
-	 * add a player to players list
+	 * Add a player to players list.
 	 * 
-	 * @param view      Game view
-	 * @param nbPlayers Number of playing players
+	 * @param view game view
+	 * @param nbPlayers number of playing players
 	 * @return true if player is added, false otherwise
 	 */
 	public boolean addPlayer(View view, int nbPlayers) {

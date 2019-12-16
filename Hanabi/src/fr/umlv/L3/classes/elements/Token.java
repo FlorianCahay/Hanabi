@@ -4,16 +4,16 @@ import java.util.Objects;
 
 /**
  * 
- * Represent a token as a color
+ * Represent a token as a color.
  *
  */
 public class Token {
 	private final Color color;
 
 	/**
-	 * Constructor initializing token color
+	 * Constructs a token with one color.
 	 * 
-	 * @param color Token color
+	 * @param color color
 	 * @throws IllegalArgumentException if color is not blue or red
 	 */
 	public Token(Color color) {
@@ -23,6 +23,9 @@ public class Token {
 		this.color = color;
 	}
 
+	/**
+	 * Returns a string representation of the token.
+	 */
 	@Override
 	public String toString() {
 		return color + " token";

@@ -5,14 +5,14 @@ import fr.umlv.L3.classes.elements.Color;
 
 /**
  * 
- * Represent a hint for a color
+ * Represent a hint for a color.
  *
  */
 public class HintColor extends AbstractHint {
 	private final Color color;
 
 	/**
-	 * Constructor initializing HintColor with a color
+	 * Constructs a HintColor with a color.
 	 * 
 	 * @param color hint color to test
 	 */
@@ -21,7 +21,7 @@ public class HintColor extends AbstractHint {
 	}
 
 	/**
-	 * test if the card has the right color
+	 * Test if the card has the right color.
 	 * 
 	 * @return true if the card has the right color, false otherwise
 	 */

@@ -4,14 +4,14 @@ import fr.umlv.L3.classes.elements.Card;
 
 /**
  * 
- * Represent a hint for a value
+ * Represent a hint for a value.
  *
  */
 public class HintValue extends AbstractHint {
 	private final int value;
 
 	/**
-	 * Constructor initializing HintValue with a value
+	 * Constructs a HintValue with a value.
 	 * 
 	 * @param value hint value to test
 	 */
@@ -19,6 +19,11 @@ public class HintValue extends AbstractHint {
 		this.value = value;
 	}
 
+	/**
+	 * Test if the card has the right value.
+	 * 
+	 * @return true if the card has the right value, false otherwise
+	 */
 	@Override
 	public boolean testCard(Card card) {
 		if (card.getValue() == value) {

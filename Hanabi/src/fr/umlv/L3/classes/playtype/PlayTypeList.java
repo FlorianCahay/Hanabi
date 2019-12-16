@@ -5,30 +5,30 @@ import java.util.TreeSet;
 
 /**
  * 
- * Represent a set of the possible plays
+ * Represent a set of the possible plays.
  *
  */
 public class PlayTypeList {
 	private final SortedSet<PlayType> types = new TreeSet<>();
 
 	/**
-	 * Constructor initializing the list of play with the "PLAY"
+	 * Constructs the list of play with the "PLAY"
 	 */
 	public PlayTypeList() {
 		types.add(PlayType.PLAY);
 	}
 
 	/**
-	 * Add a play to the play list
+	 * Add the specified play to the list.
 	 * 
-	 * @param type Play type to add
+	 * @param type play type to add
 	 */
 	public void add(PlayType type) {
 		types.add(type);
 	}
 
 	/**
-	 * Remove "HINT" and "DISCARD" plays
+	 * Remove "HINT" and "DISCARD" plays.
 	 */
 	public void clear() {
 		types.remove(PlayType.HINT);
@@ -36,7 +36,7 @@ public class PlayTypeList {
 	}
 
 	/**
-	 * Get size of the play list
+	 * Get size of the list.
 	 * 
 	 * @return play list size
 	 */
@@ -45,12 +45,11 @@ public class PlayTypeList {
 	}
 
 	/**
-	 * Get a play type from an index value
+	 * Get a play type from an index value.
 	 * 
 	 * @param indexPlay index of value of the play in the list
 	 * @return corresponding play type
-	 * @throws IllegalStateException if indexPlay is not a valid index in the play
-	 *                               list
+	 * @throws IllegalStateException if indexPlay is not a valid index in the list
 	 */
 	public PlayType getPlayType(int indexPlay) {
 		int i = 1;
@@ -63,15 +62,16 @@ public class PlayTypeList {
 		throw new IllegalStateException("The playTypeList doesn't contain that much elements");
 	}
 
+	/**
+	 * Returns a string representation of the list.
+	 */
 	@Override
 	public String toString() {
 		int i = 1;
 		StringBuilder str = new StringBuilder();
 		for (PlayType playType : types) {
-			str.append(i);
-			str.append(" : ");
-			str.append(playType);
-			str.append("\n");
+			str.append(i).append(" : ");
+			str.append(playType).append("\n");
 			i++;
 		}
 		return str.toString();

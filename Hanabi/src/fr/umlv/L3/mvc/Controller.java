@@ -36,10 +36,10 @@ public class Controller {
 	}
 
 	/**
-	 * initialize players by asking their names
+	 * Initialize players by asking their names.
 	 * 
-	 * @param data      Game data
-	 * @param view      Game view
+	 * @param data game data
+	 * @param view game view
 	 * @param nbPlayers number of players to initialize
 	 */
 	public static void initialisePlayers(Data data, View view, int nbPlayers) {
@@ -52,10 +52,10 @@ public class Controller {
 	}
 
 	/**
-	 * return corresponding value of a play
+	 * Return corresponding value of a play.
 	 * 
-	 * @param data Game data
-	 * @param view Game view
+	 * @param data game data
+	 * @param view game view
 	 * @return value of choice
 	 */
 	public static PlayType choseTypeOfPlay(Data data, View view) {
@@ -64,11 +64,11 @@ public class Controller {
 	}
 
 	/**
-	 * show score if game is over
+	 * Show score if the game is over.
 	 * 
-	 * @param data Game data
-	 * @param view Game view
-	 * @return True if game is over, False otherwise
+	 * @param data game data
+	 * @param view game view
+	 * @return true if game is over, false otherwise
 	 */
 	public static boolean isGameOver(Data data, View view) {
 		if (data.gameOver()) {
@@ -79,10 +79,10 @@ public class Controller {
 	}
 
 	/**
-	 * get a valid number of playing players
+	 * Get a valid number of playing players.
 	 * 
-	 * @param data Game data
-	 * @param view Game view
+	 * @param data game data
+	 * @param view game view
 	 * @return valid number of players
 	 */
 	public static int setNbPlayers(Data data, View view) {

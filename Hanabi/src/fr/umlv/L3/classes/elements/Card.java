@@ -4,7 +4,7 @@ import java.util.Objects;
 
 /**
  * 
- * Represent a card with a value and a color
+ * Represent a card with a value and a color.
  *
  */
 public class Card {
@@ -12,23 +12,23 @@ public class Card {
 	private final Color color;
 
 	/**
-	 * Constructor initializing a Card
+	 * Constructs a Card with specified value and color.
 	 * 
-	 * @param value Value between 1 and 5
+	 * @param value value between 1 and 5
 	 * @param color color from Color enumerate
 	 * @throws IllegalArgumentException if value is not include in [1,5]
 	 * @throws NullPointerException     if color is null
 	 */
 	public Card(int value, Color color) {
 		if (value < 1 || value > 5) {
-			throw new IllegalArgumentException("card value must include in [1,5]");
+			throw new IllegalArgumentException("card value must be include in [1,5]");
 		}
 		this.value = value;
 		this.color = Objects.requireNonNull(color);
 	}
 
 	/**
-	 * Get card color
+	 * Get card color.
 	 * 
 	 * @return card color
 	 */
@@ -37,7 +37,7 @@ public class Card {
 	}
 
 	/**
-	 * get card value
+	 * Get card value.
 	 * 
 	 * @return card value
 	 */
@@ -45,6 +45,9 @@ public class Card {
 		return value;
 	}
 
+	/**
+	 * Returns a string representation of the card.
+	 */
 	@Override
 	public String toString() {
 		return "*" + value + color + "*";

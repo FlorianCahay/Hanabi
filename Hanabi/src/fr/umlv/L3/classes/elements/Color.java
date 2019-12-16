@@ -2,7 +2,7 @@ package fr.umlv.L3.classes.elements;
 
 /**
  * 
- * Represent an enumeration of five colors
+ * Represent an enumeration of five colors.
  *
  */
 public enum Color {

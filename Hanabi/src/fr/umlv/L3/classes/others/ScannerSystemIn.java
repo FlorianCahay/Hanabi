@@ -11,17 +11,17 @@ import fr.umlv.L3.mvc.View;
 
 /**
  * 
- * Represent a scanner scanning System.in entry
+ * Represent a scanner scanning System.in entry.
  *
  */
 public class ScannerSystemIn {
 	private final Scanner scanner = new Scanner(System.in);
 
 	/**
-	 * Get a valid int value input by user
+	 * Get a valid int value input by user.
 	 * 
-	 * @param min Minimum value
-	 * @param max Maximum value
+	 * @param min minimum value
+	 * @param max maximum value
 	 * @return a valid int value input by user
 	 * @throws InputMismatchException if the value not corresponding to a hint
 	 *                                include in min and max
@@ -40,7 +40,7 @@ public class ScannerSystemIn {
 	}
 
 	/**
-	 * Get a valid string input by user
+	 * Get a valid string input by user.
 	 * 
 	 * @return valid string input by user
 	 */
@@ -49,29 +49,36 @@ public class ScannerSystemIn {
 	}
 
 	/**
-	 * Get a valid color input by user
+	 * Get a valid color input by user.
 	 * 
 	 * @return valid color
 	 * @throws IllegalStateException if input not corresponding to any color
 	 */
 	public Color nextColor() {
 		switch (scanner.next()) {
-		case "RED":
-			return Color.RED;
-		case "BLUE":
-			return Color.BLUE;
-		case "YELLOW":
-			return Color.YELLOW;
-		case "WHITE":
-			return Color.WHITE;
-		case "GREEN":
-			return Color.GREEN;
-		default:
-			throw new IllegalStateException(
-					"Color string must be in capitals and be an existing color of the fireworks");
+			case "RED":
+				return Color.RED;
+			case "BLUE":
+				return Color.BLUE;
+			case "YELLOW":
+				return Color.YELLOW;
+			case "WHITE":
+				return Color.WHITE;
+			case "GREEN":
+				return Color.GREEN;
+			default:
+				throw new IllegalStateException(
+						"Color string must be in capitals and be an existing color of the fireworks");
 		}
 	}
 
+	/**
+	 * 
+	 * @param error error to print if not valid
+	 * @param view game view
+	 * @param next supplier
+	 * @return new valid object
+	 */
 	private Object getValid(String error, View view, Supplier<Object> next) {
 		var read = new Object();
 		while (true) {
@@ -86,12 +93,12 @@ public class ScannerSystemIn {
 	}
 
 	/**
-	 * Keep trying to get a valid int value
+	 * Keep trying to get a valid int value.
 	 * 
 	 * @param error error to print if not valid value
-	 * @param view  Game view
-	 * @param min   Minimum value
-	 * @param max   Maximum value
+	 * @param view game view
+	 * @param min minimum value
+	 * @param max maximum value
 	 * @return valid int value include in min and max
 	 */
 	public int getValidInt(String error, View view, int min, int max) {
@@ -99,10 +106,10 @@ public class ScannerSystemIn {
 	}
 
 	/**
-	 * Keep trying to get a valid string
+	 * Keep trying to get a valid string.
 	 * 
 	 * @param error error to print if not valid string
-	 * @param view  Game view
+	 * @param view game view
 	 * @return valid string
 	 */
 	public String getValidString(String error, View view) {
@@ -110,9 +117,9 @@ public class ScannerSystemIn {
 	}
 
 	/**
-	 * Keep trying to get a valid color
+	 * Keep trying to get a valid color.
 	 * 
-	 * @param view Game view
+	 * @param view game view
 	 * @return valid color
 	 */
 	public Color getValidColor(View view) {
@@ -121,11 +128,11 @@ public class ScannerSystemIn {
 	}
 
 	/**
-	 * Keep trying to get a valid player
+	 * Keep trying to get a valid player.
 	 * 
-	 * @param view         Game view
-	 * @param players      Player list
-	 * @param actualPlayer Playing player
+	 * @param view game view
+	 * @param players player list
+	 * @param actualPlayer playing player
 	 * @return existing player
 	 */
 	public Player getValidPlayer(View view, ArrayList<Player> players, Player actualPlayer) {
@@ -143,10 +150,10 @@ public class ScannerSystemIn {
 	}
 
 	/**
-	 * Keep trying to get a valid card from hand of the player
+	 * Keep trying to get a valid card from hand of the player.
 	 * 
-	 * @param view   Game view
-	 * @param player Player to get the hand
+	 * @param view game view
+	 * @param player player to get the hand
 	 * @return valid card contained in player hand
 	 */
 	public Card getValidCardFromHand(View view, Player player) {
@@ -156,7 +163,7 @@ public class ScannerSystemIn {
 	}
 
 	/**
-	 * Close the scanner
+	 * Close the scanner.
 	 */
 	public void close() {
 		scanner.close();

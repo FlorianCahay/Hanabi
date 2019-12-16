@@ -10,13 +10,13 @@ import fr.umlv.L3.classes.playtype.PlayTypeList;
 
 /**
  * 
- * Represent the game displayer
+ * Represent the game displayer.
  *
  */
 public class View {
 
 	/**
-	 * Print each players
+	 * Print each players.
 	 * 
 	 * @param players list of players to print
 	 */
@@ -24,15 +24,16 @@ public class View {
 		players.forEach(player -> System.out.println(player));
 	}
 
-	/*
-	 * Print box
+	/**
+	 * Print the specified box.
+	 * @param box the box
 	 */
 	public void drawBox(Box box) {
 		System.out.println(box);
 	}
 
 	/**
-	 * Print board
+	 * Print board.
 	 * 
 	 * @param board Game board
 	 */
@@ -41,7 +42,7 @@ public class View {
 	}
 
 	/**
-	 * Print sentence asking for a name
+	 * Print sentence asking for a name.
 	 * 
 	 * @param i which player
 	 */
@@ -51,25 +52,25 @@ public class View {
 	}
 
 	/**
-	 * Print separator line
+	 * Print separator line.
 	 */
 	public void drawSeparator() {
 		System.out.println("-----------------------------------------");
 	}
 
 	/**
-	 * Print sentence asking for a card in player hand
+	 * Print sentence asking for a card in player hand.
 	 */
 	public void drawAskCard() {
 		drawSeparator();
-		System.out.println("Which card do you want from your hand ? (write down card position)");
+		System.out.println("Which card do you want from your hand ? (write down card position, start at 1)");
 	}
 
 	/**
-	 * Print sentence asking a player to chose his next play
+	 * Print sentence asking a player to chose his next play.
 	 * 
-	 * @param player    Player playing
-	 * @param playTypes Possible plays
+	 * @param player player playing
+	 * @param playTypes possible plays
 	 */
 	public void drawAskTypeOfPlay(Player player, PlayTypeList playTypes) {
 		drawSeparator();
@@ -81,7 +82,7 @@ public class View {
 	}
 
 	/**
-	 * Print an error
+	 * Print an error.
 	 * 
 	 * @param error string to add in the printed error
 	 */
@@ -90,9 +91,9 @@ public class View {
 	}
 
 	/**
-	 * Print error for type of play
+	 * Print error for type of play.
 	 * 
-	 * @param player    Player playing
+	 * @param player player playing
 	 * @param playTypes Possible plays
 	 */
 	public void drawErrorTypeOfPlay(Player player, PlayTypeList playTypes) {
@@ -101,21 +102,24 @@ public class View {
 	}
 
 	/**
-	 * Print error for card chose
+	 * Print error for card chose.
 	 */
 	public void drawErrorCardChose() {
 		drawError("Write down number press enter then write down color in CAPITALS press enter");
 		drawAskCard();
 	}
 
+	/**
+	 * Print error for player doesn't exist.
+	 */
 	public void drawErrorPlayerDoesntExist() {
 		drawError("The name you wrote is not an existing player");
 	}
 
 	/**
-	 * Print error for card chose not in hand
+	 * Print error for card chose not in hand.
 	 * 
-	 * @param player Actual player
+	 * @param player actual player
 	 */
 	public void drawErrorCardChoseNotInHand(Player player) {
 		drawError("Your hand doesn't contain the card you chose");
@@ -123,17 +127,23 @@ public class View {
 		drawAskCard();
 	}
 
+	/**
+	 * Print error for bad number of player.
+	 */
 	public void drawErrorNbPlayers() {
 		drawError("min is 2 and max is 5");
 		drawAskPlayers();
 	}
 
+	/**
+	 * Print error for a bad play.
+	 */
 	public void drawErrortCantDoPlay() {
 		drawError("you can't do this play");
 	}
 
 	/**
-	 * Print sentence to show score
+	 * Print sentence to show score.
 	 * 
 	 * @param points score at the end game
 	 */
@@ -143,25 +153,25 @@ public class View {
 	}
 
 	/**
-	 * Print player
+	 * Print player.
 	 * 
-	 * @param player Player to show
+	 * @param player player to show
 	 */
 	public void drawPlayer(Player player) {
 		System.out.println(player);
 	}
 
 	/**
-	 * Print deck
+	 * Print the number of cards remaining.
 	 * 
-	 * @param deckSize Deck to show
+	 * @param deckSize deck to show
 	 */
 	public void drawDeck(int deckSize) {
 		System.out.println("remaining cards in deck : " + deckSize);
 	}
 
 	/**
-	 * Print a sentence asking for the number of players
+	 * Print a sentence asking for the number of players.
 	 */
 	public void drawAskPlayers() {
 		drawSeparator();
@@ -169,7 +179,7 @@ public class View {
 	}
 
 	/**
-	 * Print a sentence asking for which player to give a hint
+	 * Print a sentence asking for which player to give a hint.
 	 */
 	public void drawAskHint() {
 		drawSeparator();
@@ -177,7 +187,7 @@ public class View {
 	}
 
 	/**
-	 * Print a sentence asking for the type hint to give
+	 * Print a sentence asking for the type hint to give.
 	 */
 	public void drawAskColorOrValue() {
 		drawSeparator();
@@ -185,7 +195,7 @@ public class View {
 	}
 
 	/**
-	 * Print a sentence asking for a card color
+	 * Print a sentence asking for a card color.
 	 */
 	public void drawAskForColor() {
 		drawSeparator();
@@ -193,7 +203,7 @@ public class View {
 	}
 
 	/**
-	 * Print a sentence asking for a card value
+	 * Print a sentence asking for a card value.
 	 */
 	public void drawAskForValue() {
 		drawSeparator();
@@ -201,7 +211,7 @@ public class View {
 	}
 
 	/**
-	 * Print information that the card has been played
+	 * Print information that the card has been played.
 	 * 
 	 * @param card card to show
 	 */
@@ -210,7 +220,7 @@ public class View {
 	}
 
 	/**
-	 * Print information that the card has been discarded
+	 * Print information that the card has been discarded.
 	 * 
 	 * @param card card to show
 	 */
@@ -219,7 +229,7 @@ public class View {
 	}
 
 	/**
-	 * Print player hint
+	 * Print player hint.
 	 * 
 	 * @param player player which we want to print hint
 	 */
@@ -228,9 +238,9 @@ public class View {
 	}
 
 	/**
-	 * Print players, box and board
+	 * Print players, box and board.
 	 * 
-	 * @param data Game data
+	 * @param data game data
 	 */
 	public void draw(Data data) {
 		drawSeparator();
