@@ -154,4 +154,12 @@ public class ScannerSystemIn {
 				1, player.getHandSize()) - 1);
 		return card;
 	}
+
+	/**
+	 * Close the scanner
+	 */
+	public void close() {
+		scanner.close();
+	}
+
 }

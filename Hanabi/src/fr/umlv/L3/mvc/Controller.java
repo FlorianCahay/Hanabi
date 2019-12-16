@@ -30,6 +30,7 @@ public class Controller {
 					quit = isGameOver(data, view);
 					i = (i + 1) % nbPlayers;
 				}
+				data.closeScanner();
 			}
 		});
 	}

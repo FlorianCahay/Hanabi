@@ -103,6 +103,13 @@ public class Data {
 	}
 
 	/**
+	 * Close the scanner
+	 */
+	public void closeScanner() {
+		scanner.close();
+	}
+
+	/**
 	 * get which type of play the player want to do
 	 * 
 	 * @param view Game view
