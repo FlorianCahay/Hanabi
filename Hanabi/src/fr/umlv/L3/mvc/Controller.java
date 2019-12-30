@@ -14,13 +14,10 @@ public class Controller {
 				var data = new Data();
 				var view = new View();
 				var nbPlayers = setNbPlayers(data, view);
-
 				initialisePlayers(data, view, nbPlayers);
-
 				var i = 0;
 				PlayType playChoice;
 				var quit = false;
-
 				while (!quit) {
 					data.setActualPlayer(i);
 					data.setPlayTypes();
@@ -31,15 +28,15 @@ public class Controller {
 					i = (i + 1) % nbPlayers;
 				}
 				data.closeScanner();
-			}
-		});
+			} 
+		});  
 	}
 
 	/**
 	 * Initialize players by asking their names.
 	 * 
-	 * @param data game data
-	 * @param view game view
+	 * @param data      game data
+	 * @param view      game view
 	 * @param nbPlayers number of players to initialize
 	 */
 	public static void initialisePlayers(Data data, View view, int nbPlayers) {
