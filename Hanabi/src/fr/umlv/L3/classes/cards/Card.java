@@ -1,4 +1,4 @@
-package fr.umlv.L3.classes.elements;
+package fr.umlv.L3.classes.cards;
 
 import java.util.Objects;
 

@@ -2,8 +2,8 @@ package fr.umlv.L3.classes.containers;
 
 import java.util.HashMap;
 
-import fr.umlv.L3.classes.elements.Color;
-import fr.umlv.L3.classes.elements.Token;
+import fr.umlv.L3.classes.cards.Color;
+import fr.umlv.L3.classes.others.Token;
 
 /**
  * Represent a token container.

@@ -1,6 +1,8 @@
-package fr.umlv.L3.classes.elements;
+package fr.umlv.L3.classes.others;
 
 import java.util.Objects;
+
+import fr.umlv.L3.classes.cards.Color;
 
 /**
  * 
@@ -21,6 +23,10 @@ public class Token {
 			throw new IllegalArgumentException("a token can only be blue or red");
 		}
 		this.color = color;
+	}
+	
+	public Color getColor() {
+		return color;
 	}
 
 	/**

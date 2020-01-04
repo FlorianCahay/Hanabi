@@ -3,8 +3,8 @@ package fr.umlv.L3.classes.containers;
 import java.util.HashMap;
 import java.util.Stack;
 
-import fr.umlv.L3.classes.elements.Card;
-import fr.umlv.L3.classes.elements.Color;
+import fr.umlv.L3.classes.cards.Card;
+import fr.umlv.L3.classes.cards.Color;
 import fr.umlv.L3.classes.others.Deck;
 
 /**
@@ -19,6 +19,10 @@ public class Board extends Box {
 	 */
 	public Board() {
 		super(0, 3);
+	}
+	
+	public HashMap<Color, Integer> getFireworks() {
+		return fireworks;
 	}
 
 	/**

@@ -1,6 +1,12 @@
 package fr.umlv.L3.mvc;
 
+import java.awt.Color;
+
 import fr.umlv.L3.classes.playtype.PlayType;
+import fr.umlv.zen5.Application;
+import fr.umlv.zen5.ApplicationContext;
+import fr.umlv.zen5.Event;
+import fr.umlv.zen5.Event.Action;
 
 /**
  * 
@@ -9,27 +15,49 @@ import fr.umlv.L3.classes.playtype.PlayType;
  */
 public class Controller {
 	public static void main(String[] args) {
-		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				var data = new Data();
-				var view = new View();
-				var nbPlayers = setNbPlayers(data, view);
-				initialisePlayers(data, view, nbPlayers);
-				var i = 0;
-				PlayType playChoice;
-				var quit = false;
-				while (!quit) {
-					data.setActualPlayer(i);
-					data.setPlayTypes();
-					view.draw(data);
-					playChoice = choseTypeOfPlay(data, view);
-					playChoice.play(data, view);
-					quit = isGameOver(data, view);
-					i = (i + 1) % nbPlayers;
-				}
-				data.closeScanner();
-			} 
-		});  
+		Application.run(Color.WHITE, Controller::app);
+	}
+	
+	
+	private static void app(ApplicationContext context) {
+		// get the size of the screen
+		var screenInfo = context.getScreenInfo();
+		var width = screenInfo.getWidth();
+		var height = screenInfo.getHeight();
+		System.out.println("size of the screen (" + width + " x " + height + ")");
+		
+		var data = new Data();
+		var view = new View(context, width, height);
+		var nbPlayers = 2; //setNbPlayers(data, view);
+		initialisePlayers(data, view, 1);
+		var i = 0;
+		data.setActualPlayer(i);
+		//PlayType playChoice;
+		var quit = false;
+		view.drawGraphics(data);
+		
+		while (!quit) {
+			Event event = context.pollOrWaitEvent(10);
+			if (event == null) { // no event
+				continue;
+			}
+			Action action = event.getAction();
+			if (action == Action.KEY_PRESSED || action == Action.KEY_RELEASED) {
+				System.out.println("Aaaaahh!");
+				context.exit(0);
+				return;
+			}
+			view.drawGraphics(data);
+			
+			data.setActualPlayer(i);
+//			data.setPlayTypes();
+//			view.draw(data);
+//			playChoice = choseTypeOfPlay(data, view);
+//			playChoice.play(data, view);
+//			quit = isGameOver(data, view);
+			i = (i + 1) % nbPlayers;
+		}
+		data.closeScanner();
 	}
 
 	/**

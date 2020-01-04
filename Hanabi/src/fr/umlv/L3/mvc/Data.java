@@ -2,17 +2,17 @@ package fr.umlv.L3.mvc;
 
 import java.util.ArrayList;
 
+import fr.umlv.L3.classes.cards.Card;
+import fr.umlv.L3.classes.cards.Color;
 import fr.umlv.L3.classes.containers.Board;
 import fr.umlv.L3.classes.containers.Box;
-import fr.umlv.L3.classes.elements.Card;
-import fr.umlv.L3.classes.elements.Color;
-import fr.umlv.L3.classes.elements.Token;
 import fr.umlv.L3.classes.hint.Hint;
 import fr.umlv.L3.classes.hint.HintColor;
 import fr.umlv.L3.classes.hint.HintValue;
 import fr.umlv.L3.classes.others.Deck;
 import fr.umlv.L3.classes.others.Player;
 import fr.umlv.L3.classes.others.ScannerSystemIn;
+import fr.umlv.L3.classes.others.Token;
 import fr.umlv.L3.classes.playtype.PlayType;
 import fr.umlv.L3.classes.playtype.PlayTypeList;
 
@@ -29,7 +29,7 @@ public class Data {
 	private final ScannerSystemIn scanner = new ScannerSystemIn();
 	private Player actualPlayer = null;
 	private final PlayTypeList playTypes = new PlayTypeList();
-
+	
 	/**
 	 * Get data board.
 	 * 

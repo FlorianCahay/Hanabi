@@ -1,7 +1,7 @@
 package fr.umlv.L3.classes.hint;
 
-import fr.umlv.L3.classes.elements.Card;
-import fr.umlv.L3.classes.elements.Color;
+import fr.umlv.L3.classes.cards.Card;
+import fr.umlv.L3.classes.cards.Color;
 
 /**
  * 

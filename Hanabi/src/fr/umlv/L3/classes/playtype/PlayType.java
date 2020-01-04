@@ -1,7 +1,7 @@
 package fr.umlv.L3.classes.playtype;
 
-import fr.umlv.L3.classes.elements.Color;
-import fr.umlv.L3.classes.elements.Token;
+import fr.umlv.L3.classes.cards.Color;
+import fr.umlv.L3.classes.others.Token;
 import fr.umlv.L3.mvc.Data;
 import fr.umlv.L3.mvc.View;
 

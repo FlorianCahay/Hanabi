@@ -3,7 +3,7 @@ package fr.umlv.L3.classes.others;
 import java.util.LinkedList;
 import java.util.Objects;
 
-import fr.umlv.L3.classes.elements.Card;
+import fr.umlv.L3.classes.cards.Card;
 import fr.umlv.L3.classes.hint.Hint;
 
 /**

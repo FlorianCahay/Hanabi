@@ -1,12 +1,18 @@
 package fr.umlv.L3.mvc;
 
+import java.awt.Font;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 
+import fr.umlv.L3.classes.cards.Card;
 import fr.umlv.L3.classes.containers.Board;
+import fr.umlv.L3.classes.containers.BoardView;
 import fr.umlv.L3.classes.containers.Box;
-import fr.umlv.L3.classes.elements.Card;
+import fr.umlv.L3.classes.containers.BoxView;
 import fr.umlv.L3.classes.others.Player;
+import fr.umlv.L3.classes.others.PlayerView;
 import fr.umlv.L3.classes.playtype.PlayTypeList;
+import fr.umlv.zen5.ApplicationContext;
 
 /**
  * 
@@ -14,6 +20,47 @@ import fr.umlv.L3.classes.playtype.PlayTypeList;
  *
  */
 public class View {
+	private static final int NB_LINES = 10;
+	private static final int NB_COLUMNS = 17;
+	private final ApplicationContext context;
+	private final float cellWidth;
+	private final float cellHeight;
+	
+	public View(ApplicationContext context, float screenWidth, float screenHeight) {
+		this.context = context;
+		this.cellWidth = screenWidth/NB_COLUMNS;
+		this.cellHeight = screenHeight/NB_LINES;
+	}
+	
+	public void drawGraphics(Data data) {
+		// Afficher tout le jeu
+		drawBoardGraphics(data.getBoard());
+		drawPlayersGraphics(data.getPlayers());
+		drawBoxGraphics(data.getBox());
+		
+	}
+	
+	private void drawBoardGraphics(Board board) {
+		var boardView = BoardView.initGraphics(cellWidth*3, cellHeight*2, cellWidth*11, cellHeight*5, board);
+		BoardView.draw(context, boardView);
+	}
+	private void drawPlayersGraphics(ArrayList<Player> players) {
+		// A MODIFIER POUR REPARTIR L'AFFICHAGE EN FONCTION DU NOMBRE DE JOUEUR
+		players.forEach(player -> PlayerView.draw(context, PlayerView.initGraphics(cellWidth*6, 0, cellWidth*5, cellHeight, false, player)));
+	}
+	private void drawBoxGraphics(Box box) {
+		var boxView = BoxView.initGraphics(cellWidth*3, cellHeight*7, cellWidth*2, cellHeight, box);
+		BoxView.draw(context, boxView);
+		System.out.println(box);
+	}
+	
+	
+	public static float[] centerTextWithFont(Graphics2D graphics, Font font, String text, float xOrigin, float yOrigin, float width, float height) {
+		var metrics = graphics.getFontMetrics(font);
+		var x = xOrigin + (width - metrics.stringWidth(text)) / 2;
+		var y = yOrigin + ((height - metrics.getHeight()) / 2) + metrics.getAscent();
+		return new float[] {x, y};
+	}
 
 	/**
 	 * Print each players.
@@ -249,4 +296,13 @@ public class View {
 		drawBox(data.getBox());
 		drawBoard(data.getBoard());
 	}
+	
+	
 }
+
+
+
+
+
+
+
