@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"fr.umlv.L3.classes.containers"},{"l":"fr.umlv.L3.classes.elements"},{"l":"fr.umlv.L3.classes.hint"},{"l":"fr.umlv.L3.classes.others"},{"l":"fr.umlv.L3.classes.playtype"},{"l":"fr.umlv.L3.mvc"}]
