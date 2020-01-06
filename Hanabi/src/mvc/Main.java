@@ -4,27 +4,35 @@ import java.util.Iterator;
 
 import board.Board;
 import board.BoardController;
+import board.BoardViewGraphic;
 import board.BoardViewTerminal;
 import cards.Deck;
 import cards.DeckController;
+import cards.DeckViewGraphic;
 import cards.DeckViewTerminal;
 import colors.Color;
 import input.Input;
+import input.MouseSelector;
 import input.ScannerSystemIn;
 import player.Player;
 import player.PlayerController;
+import player.PlayerViewGraphic;
 import player.PlayerViewTerminal;
 import player.Players;
 import player.PlayersController;
+import player.PlayersViewGraphic;
 import player.PlayersViewTerminal;
 import plays.PlayTypeController;
 import plays.PlayTypeList;
+import plays.PlayTypeViewGraphic;
 import plays.PlayTypeViewTerminal;
 import tokens.Box;
 import tokens.BoxController;
+import tokens.BoxViewGraphic;
 import tokens.BoxViewTerminal;
 
 public class Main {
+
 	private final static Input input = new ScannerSystemIn();
 	private final static PlayersController playersController = new PlayersController(new Players(),
 			new PlayersViewTerminal());
@@ -34,6 +42,21 @@ public class Main {
 	private final static PlayerController actualPlayerController = new PlayerController(null, new PlayerViewTerminal());
 	private final static PlayTypeController playTypeController = new PlayTypeController(new PlayTypeList(),
 			new PlayTypeViewTerminal());
+
+	/*
+	 * private final static Input input = new MouseSelector(); private final static
+	 * PlayersController playersController = new PlayersController(new Players(),
+	 * new PlayersViewGraphic()); private final static DeckController deckController
+	 * = new DeckController(new Deck(), new DeckViewGraphic()); private final static
+	 * BoxController boxController = new BoxController(new Box(Color.BLUE), new
+	 * BoxViewGraphic()); private final static BoardController boardController = new
+	 * BoardController(new Board(), new BoardViewGraphic()); private final static
+	 * PlayerController actualPlayerController = new PlayerController(null, new
+	 * PlayerViewGraphic()); private final static PlayTypeController
+	 * playTypeController = new PlayTypeController(new PlayTypeList(), new
+	 * PlayTypeViewGraphic());
+	 */
+
 	private static int numberPlayers = 0;
 	private static Iterator<Player> playersIterator = null;
 
