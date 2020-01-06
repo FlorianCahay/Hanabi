@@ -20,6 +20,4 @@ public interface Input {
 	public Card getValidCardFromHand(Player player);
 
 	public void close();
-
-	public void updateView();
 }

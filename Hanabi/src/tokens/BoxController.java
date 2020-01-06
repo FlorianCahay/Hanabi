@@ -1,8 +1,6 @@
 package tokens;
 
-import mvc.Controller;
-
-public class BoxController implements Controller {
+public class BoxController {
 	private final Box model;
 	private final BoxView view;
 
@@ -17,12 +15,6 @@ public class BoxController implements Controller {
 
 	public void showBox() {
 		view.showBox(model);
-		updateView();
-	}
-
-	@Override
-	public void updateView() {
-		view.draw();
 	}
 
 }

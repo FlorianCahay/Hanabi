@@ -3,13 +3,12 @@ package player;
 import board.Board;
 import cards.Deck;
 import input.Input;
-import mvc.Controller;
 import plays.PlayType;
 import plays.PlayTypeController;
 import plays.PlayTypeList;
 import tokens.Box;
 
-public class PlayerController implements Controller {
+public class PlayerController {
 
 	private Player model;
 	private final PlayerView view;
@@ -22,7 +21,6 @@ public class PlayerController implements Controller {
 
 	public void showPlayer() {
 		view.showPlayer(model);
-		updateView();
 	}
 
 	public void setPlayer(Player player) {
@@ -37,18 +35,12 @@ public class PlayerController implements Controller {
 	public void makeAPlay(Input input, PlayTypeController playTypeController, Player actualPlayer, Players players,
 			Box box, Board board, Deck deck) {
 		view.askPlayType(model.getName());
-		updateView();
 		var play = setPlayType(input, playTypeController.getModel());
 		play.play(input, actualPlayer, players, playTypeController.getView(), box, board, deck);
 	}
 
 	public Player getModel() {
 		return model;
-	}
-
-	@Override
-	public void updateView() {
-		view.draw();
 	}
 
 }

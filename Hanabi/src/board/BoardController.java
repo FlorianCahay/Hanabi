@@ -1,9 +1,8 @@
 package board;
 
 import cards.Deck;
-import mvc.Controller;
 
-public class BoardController implements Controller {
+public class BoardController {
 	private final Board model;
 	private final BoardView view;
 
@@ -19,7 +18,6 @@ public class BoardController implements Controller {
 	public boolean gameOver(Deck deck) {
 		if (model.gameOver(deck)) {
 			view.gameOver(model.getScore());
-			updateView();
 			return true;
 		}
 		return false;
@@ -27,12 +25,6 @@ public class BoardController implements Controller {
 
 	public void showBoard() {
 		view.showBoard(model);
-		updateView();
-	}
-
-	@Override
-	public void updateView() {
-		view.draw();
 	}
 
 }

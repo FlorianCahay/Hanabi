@@ -5,7 +5,7 @@ import colors.Color;
 import player.Player;
 import player.Players;
 
-public class MouseSelector implements Input{
+public class MouseSelector implements Input {
 
 	@Override
 	public int getValidInt(String error, int min, int max) {
@@ -46,13 +46,7 @@ public class MouseSelector implements Input{
 	@Override
 	public void close() {
 		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void updateView() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

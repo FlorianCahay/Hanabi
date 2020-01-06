@@ -41,7 +41,6 @@ public class ScannerSystemIn implements Input {
 				read = next.get();
 			} catch (Exception e) {
 				view.error(error);
-				updateView();
 				continue;
 			}
 			return read;
@@ -69,7 +68,6 @@ public class ScannerSystemIn implements Input {
 				return name;
 			}
 			view.error("This player name already exists");
-			updateView();
 		}
 	}
 
@@ -81,7 +79,6 @@ public class ScannerSystemIn implements Input {
 				return players.getPlayer(name, actualPlayer);
 			} catch (Exception e) {
 				view.error("This player name doesn't exist");
-				updateView();
 			}
 		}
 	}
@@ -95,9 +92,5 @@ public class ScannerSystemIn implements Input {
 
 	public void close() {
 		scanner.close();
-	}
-
-	public void updateView() {
-		view.draw();
 	}
 }

@@ -5,8 +5,6 @@ import cards.Card;
 public interface PlayTypeView {
 	public void showPossiblePlays(PlayTypeList plays);
 
-	public void draw();
-
 	public void askWhichPlayer();
 
 	public void askColorOrValue();

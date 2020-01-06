@@ -2,11 +2,10 @@ package plays;
 
 import board.Board;
 import colors.Color;
-import mvc.Controller;
 import tokens.Box;
 import tokens.Token;
 
-public class PlayTypeController implements Controller {
+public class PlayTypeController  {
 
 	private final PlayTypeList model;
 	private final PlayTypeView view;
@@ -37,12 +36,6 @@ public class PlayTypeController implements Controller {
 	public void showPossiblePlays(Box box, Board board) {
 		setPlayTypes(box, board);
 		view.showPossiblePlays(model);
-		updateView();
-	}
-
-	@Override
-	public void updateView() {
-		view.draw();
 	}
 
 }

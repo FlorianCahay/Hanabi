@@ -4,12 +4,12 @@ import mvc.ViewTerminal;
 
 public class BoardViewTerminal extends ViewTerminal implements BoardView {
 	public void showBoard(Board board) {
-		append(board.toString());
+		System.out.println(board);
 	}
 
 	public void gameOver(int score) {
 		separator();
-		append("Game over : ");
-		append(score);
+		System.out.println("Game over : " + score);
 	}
+
 }

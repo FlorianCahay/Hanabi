@@ -6,7 +6,5 @@ public interface PlayersView {
 
 	public void askPlayerName(int index);
 
-	public void draw();
-
 	public void showPlayersCards(Players players);
 }

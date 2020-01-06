@@ -1,5 +1,5 @@
 package colors;
 
 public enum Color {
-	BLUE, RED, WHITE, GREEN, YELLOW;
+	BLUE, RED, WHITE, YELLOW, GREEN;
 }

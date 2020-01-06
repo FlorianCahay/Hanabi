@@ -43,18 +43,14 @@ public enum PlayType {
 
 	private void hint(Input input, Player actualPlayer, Players players, PlayTypeView view, Box box, Board board) {
 		view.askWhichPlayer();
-		view.draw();
 		var player = input.getExistingPlayer(players, actualPlayer);
 		view.askColorOrValue();
-		view.draw();
 		var choice = input.getValidInt("You can only give hint about color or value", 1, 2);
 		if (choice == 1) {
 			view.askColor();
-			view.draw();
 			player.setHint(input.getValidColor());
 		} else {
 			view.askValue();
-			view.draw();
 			player.setHint(input.getValidInt("Card value has to be include in [1,5]", 1, 5));
 		}
 		moveTokenHint(box, board);
@@ -69,7 +65,6 @@ public enum PlayType {
 
 	private void discard(PlayTypeView view, Input input, Player actualPlayer, Board board, Box box, Deck deck) {
 		view.askCard();
-		view.draw();
 		var card = input.getValidCardFromHand(actualPlayer);
 		discardCard(board, box, new Token(Color.BLUE), actualPlayer, card, deck);
 	}
@@ -85,15 +80,12 @@ public enum PlayType {
 
 	private void playCard(PlayTypeView view, Board board, Box box, Deck deck, Input input, Player actualPlayer) {
 		view.askCard();
-		view.draw();
 		var card = input.getValidCardFromHand(actualPlayer);
 		if (playerPlayCard(card, board, box, actualPlayer, deck)) {
 			view.showPlayedCard(card);
-			view.draw();
 			return;
 		}
 		view.showDiscardedCard(card);
-		view.draw();
 	}
 
 	private boolean playerPlayCard(Card card, Board board, Box box, Player actualPlayer, Deck deck) {

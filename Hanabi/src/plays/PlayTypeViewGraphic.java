@@ -1,9 +1,15 @@
 package plays;
 
 import cards.Card;
+import fr.umlv.zen5.ApplicationContext;
 import mvc.ViewGraphic;
 
 public class PlayTypeViewGraphic extends ViewGraphic implements PlayTypeView{
+
+	public PlayTypeViewGraphic(ApplicationContext context) {
+		super(context);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public void showPossiblePlays(PlayTypeList plays) {

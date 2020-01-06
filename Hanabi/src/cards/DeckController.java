@@ -1,8 +1,6 @@
 package cards;
 
-import mvc.Controller;
-
-public class DeckController implements Controller {
+public class DeckController {
 	private final Deck model;
 	private final DeckView view;
 
@@ -17,11 +15,5 @@ public class DeckController implements Controller {
 
 	public void showRemainingCards() {
 		view.showRemainingCards(model.getSize());
-		updateView();
-	}
-
-	@Override
-	public void updateView() {
-		view.draw();
 	}
 }

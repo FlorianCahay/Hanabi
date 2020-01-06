@@ -5,9 +5,8 @@ import java.util.Iterator;
 import cards.Deck;
 import cards.Hand;
 import input.Input;
-import mvc.Controller;
 
-public class PlayersController implements Controller {
+public class PlayersController  {
 	private final Players model;
 	private final PlayersView view;
 
@@ -23,7 +22,6 @@ public class PlayersController implements Controller {
 
 	public int setPlayersNumber(Input input) {
 		view.askPlayersNumber();
-		updateView();
 		return inputNumberOfPlayers(input);
 	}
 
@@ -38,14 +36,12 @@ public class PlayersController implements Controller {
 		}
 		for (int i = 0; i < numberPlayers; i++) {
 			view.askPlayerName(i);
-			updateView();
 			inputPlayerName(input, new Hand(deck, nbCards));
 		}
 	}
 
 	public void showPlayersCards() {
 		view.showPlayersCards(model);
-		updateView();
 	}
 
 	public Iterator<Player> playersIterator() {
@@ -54,10 +50,6 @@ public class PlayersController implements Controller {
 
 	public Players getModel() {
 		return model;
-	}
-
-	public void updateView() {
-		view.draw();
 	}
 
 }
