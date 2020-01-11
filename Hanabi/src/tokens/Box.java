@@ -34,7 +34,6 @@ public class Box {
 		} catch (Exception e) {
 			return 0;
 		}
-
 	}
 
 	public String typeOfBox() {

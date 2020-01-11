@@ -6,10 +6,12 @@ import board.Board;
 import board.BoardController;
 import board.BoardViewGraphic;
 import board.BoardViewTerminal;
+import cards.CardViewGraphic;
 import cards.Deck;
 import cards.DeckController;
 import cards.DeckViewGraphic;
 import cards.DeckViewTerminal;
+import cards.HandViewGraphic;
 import colors.Color;
 import fr.umlv.zen5.Application;
 import fr.umlv.zen5.ApplicationContext;
@@ -32,8 +34,9 @@ import tokens.Box;
 import tokens.BoxController;
 import tokens.BoxViewGraphic;
 import tokens.BoxViewTerminal;
+import tokens.TokenViewGraphic;
 
-public class Main {
+public class Controller {
 
 	private static Input input = new ScannerSystemIn();
 	private static PlayersController playersController = new PlayersController(new Players(),
@@ -49,20 +52,23 @@ public class Main {
 	private static Iterator<Player> playersIterator = null;
 
 	public static void main(String[] args) {
-		var graphic = false; // true for graphic and false for terminal
+		var graphic = true; // true for graphic and false for terminal
 		if (graphic) {
-			Application.run(java.awt.Color.WHITE, Main::graphic);
+			Application.run(java.awt.Color.WHITE, Controller::graphic);
 		} else {
 			playGame();
 		}
 	}
 
 	private static void graphic(ApplicationContext context) {
-		input = new MouseSelector();
-		playersController = new PlayersController(new Players(), new PlayersViewGraphic(context));
-		deckController = new DeckController(new Deck(), new DeckViewGraphic(context));
-		boxController = new BoxController(new Box(Color.BLUE), new BoxViewGraphic(context));
-		boardController = new BoardController(new Board(), new BoardViewGraphic(context));
+		CardViewGraphic cardView = new CardViewGraphic(context);
+		TokenViewGraphic tokenView = new TokenViewGraphic(context);
+		HandViewGraphic handView = new HandViewGraphic(context, cardView);
+		input = new MouseSelector(context, handView);
+		playersController = new PlayersController(new Players(), new PlayersViewGraphic(context, handView));
+		deckController = new DeckController(new Deck(), new DeckViewGraphic(context, cardView));
+		boxController = new BoxController(new Box(Color.BLUE), new BoxViewGraphic(context, tokenView));
+		boardController = new BoardController(new Board(), new BoardViewGraphic(context, tokenView, cardView));
 		actualPlayerController = new PlayerController(null, new PlayerViewGraphic(context));
 		playTypeController = new PlayTypeController(new PlayTypeList(), new PlayTypeViewGraphic(context));
 		playGame();
@@ -74,8 +80,8 @@ public class Main {
 		playersIterator = playersController.playersIterator();
 		var quit = false;
 		while (!quit) {
-			showGame();
 			actualPlayerController.setPlayer(playersIterator.next());
+			showGame(actualPlayerController, numberPlayers);
 			actualPlayerController.showPlayer();
 			playTypeController.showPossiblePlays(boxController.getModel(), boardController.getModel());
 			actualPlayerController.makeAPlay(input, playTypeController, actualPlayerController.getModel(),
@@ -89,8 +95,8 @@ public class Main {
 		input.close();
 	}
 
-	private static void showGame() {
-		playersController.showPlayersCards();
+	private static void showGame(PlayerController actualPlayerController, int numberPlayers) {
+		playersController.showPlayersCards(actualPlayerController.getModel(), numberPlayers);
 		deckController.showRemainingCards();
 		boxController.showBox();
 		boardController.showBoard();

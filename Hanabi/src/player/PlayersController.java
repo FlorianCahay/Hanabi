@@ -6,7 +6,7 @@ import cards.Deck;
 import cards.Hand;
 import input.Input;
 
-public class PlayersController  {
+public class PlayersController {
 	private final Players model;
 	private final PlayersView view;
 
@@ -16,7 +16,7 @@ public class PlayersController  {
 	}
 
 	private int inputNumberOfPlayers(Input input) {
-		return input.getValidInt("This game can be played from " + Players.getMinPlayers() + " to "
+		return input.getNumberPLayers("This game can be played from " + Players.getMinPlayers() + " to "
 				+ Players.getMaxPlayers() + " players", Players.getMinPlayers(), Players.getMaxPlayers());
 	}
 
@@ -40,8 +40,8 @@ public class PlayersController  {
 		}
 	}
 
-	public void showPlayersCards() {
-		view.showPlayersCards(model);
+	public void showPlayersCards(Player actualPlayer, int numberPlayer) {
+		view.showPlayersCards(model, actualPlayer, numberPlayer);
 	}
 
 	public Iterator<Player> playersIterator() {

@@ -83,6 +83,26 @@ public class ScannerSystemIn implements Input {
 		}
 	}
 
+	@Override
+	public int getNumberPLayers(String error, int min, int max) {
+		return getValidInt(error, min, max);
+	}
+
+	@Override
+	public int getPlayType(String error, int min, int max) {
+		return getValidInt(error, min, max);
+	}
+
+	@Override
+	public int getCardValue(String error, int min, int max) {
+		return getValidInt(error, min, max);
+	}
+
+	@Override
+	public int getHintType(String error, int min, int max) {
+		return getValidInt(error, min, max);
+	}
+
 	public Card getValidCardFromHand(Player player) {
 		var card = player.getCard(
 				getValidInt("Card value has to be include in [1," + player.getHandSize() + "]", 1, player.getHandSize())

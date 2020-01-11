@@ -45,13 +45,13 @@ public enum PlayType {
 		view.askWhichPlayer();
 		var player = input.getExistingPlayer(players, actualPlayer);
 		view.askColorOrValue();
-		var choice = input.getValidInt("You can only give hint about color or value", 1, 2);
+		var choice = input.getHintType("You can only give hint about color or value", 1, 2);
 		if (choice == 1) {
 			view.askColor();
 			player.setHint(input.getValidColor());
 		} else {
 			view.askValue();
-			player.setHint(input.getValidInt("Card value has to be include in [1,5]", 1, 5));
+			player.setHint(input.getCardValue("Card value has to be include in [1,5]", 1, 5));
 		}
 		moveTokenHint(box, board);
 	}

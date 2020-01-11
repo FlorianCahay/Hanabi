@@ -7,8 +7,6 @@ import player.Players;
 
 public interface Input {
 
-	public int getValidInt(String error, int min, int max);
-
 	public String getValidString(String error);
 
 	public Color getValidColor();
@@ -18,6 +16,14 @@ public interface Input {
 	public Player getExistingPlayer(Players players, Player actualPlayer);
 
 	public Card getValidCardFromHand(Player player);
+
+	public int getNumberPLayers(String error, int min, int max);
+
+	public int getHintType(String error, int min, int max);
+
+	public int getCardValue(String error, int min, int max);
+
+	public int getPlayType(String error, int min, int max);
 
 	public void close();
 }

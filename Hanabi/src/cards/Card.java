@@ -37,6 +37,14 @@ public class Card {
 		return Objects.hash(color, value);
 	}
 
+	public static int getHighestvalue() {
+		return highestValue;
+	}
+
+	public static int getLowestvalue() {
+		return lowestValue;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {

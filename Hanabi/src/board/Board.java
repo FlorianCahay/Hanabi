@@ -59,6 +59,18 @@ public class Board extends Box {
 		return fireworks.entrySet().stream().mapToInt(k -> k.getValue()).sum();
 	}
 
+	public HashMap<Color, Integer> getFireworks() {
+		return fireworks;
+	}
+
+	public Card getLastDiscardedCard() {
+		return discardedCards.peek();
+	}
+
+	public int getDiscardedCardSize() {
+		return discardedCards.size();
+	}
+
 	@Override
 	public String toString() {
 		var str = new StringBuilder();

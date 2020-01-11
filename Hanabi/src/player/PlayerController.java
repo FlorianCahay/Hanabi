@@ -28,7 +28,7 @@ public class PlayerController {
 	}
 
 	private PlayType setPlayType(Input input, PlayTypeList playTypes) {
-		var i = input.getValidInt("You can only chose a value from 1 to " + playTypes.size(), 1, playTypes.size());
+		var i = input.getPlayType("You can only chose a value from 1 to " + playTypes.size(), 1, playTypes.size());
 		return playTypes.getPlayType(i);
 	}
 
