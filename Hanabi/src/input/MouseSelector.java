@@ -3,7 +3,6 @@ package input;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -14,6 +13,7 @@ import fr.umlv.zen5.ApplicationContext;
 import fr.umlv.zen5.Event;
 import fr.umlv.zen5.Event.Action;
 import fr.umlv.zen5.KeyboardKey;
+import mvc.ViewGraphic;
 import player.Player;
 import player.Players;
 
@@ -30,21 +30,6 @@ public class MouseSelector implements Input {
 		this.handView = handView;
 	}
 
-	private Object getItem(float x, float y, Collection<Object> list, int startX, int startY, int width, int height) {
-		var nbElements = list.size();
-		var rectangleWidth = width / nbElements;
-		var rectangleHeight = height;
-		var iterator = list.iterator();
-		for (int i = 0; i < nbElements; i++) {
-			var element = iterator.next();
-			if (x > startX + i * rectangleWidth && x < startX + i * rectangleWidth + rectangleWidth && y > startY
-					&& y < startY + rectangleHeight) {
-				return element;
-			}
-		}
-		throw new IllegalArgumentException("Values given are not an item choice");
-	}
-
 	public int getValidInt(String error, int min, int max, int x, int y, int width, int height) {
 		List<Object> list = new ArrayList<>();
 		for (int i = min; i < max + 1; i++) {
@@ -58,7 +43,7 @@ public class MouseSelector implements Input {
 			}
 			Point2D.Float location = event.getLocation();
 			try {
-				return (int) getItem(location.x, location.y, list, x, y, width, height);
+				return (int) ViewGraphic.getItem(location.x, location.y, list, x, y, width, height);
 			} catch (Exception e) {
 
 			}
@@ -85,11 +70,10 @@ public class MouseSelector implements Input {
 			}
 			Point2D.Float location = event.getLocation();
 			try {
-				return (Color) getItem(location.x, location.y, Arrays.asList(Color.values()), view.getWidth(25),
-						view.getHeight(3), view.getWidth(15), view.getHeight(1));
+				return (Color) ViewGraphic.getItem(location.x, location.y, Arrays.asList((Object[]) Color.values()),
+						view.getWidth(25), view.getHeight(3), view.getWidth(15), view.getHeight(1));
 
 			} catch (Exception e) {
-
 			}
 		}
 	}
@@ -132,10 +116,16 @@ public class MouseSelector implements Input {
 							return model.toString();
 						}
 					}
-					model.append(key.name());
-					view.name(model);
+					appendKey(key);
 				}
 			}
+		}
+	}
+
+	private void appendKey(KeyboardKey key) {
+		if (key != KeyboardKey.UNDEFINED) {
+			model.append(key.name());
+			view.name(model);
 		}
 	}
 

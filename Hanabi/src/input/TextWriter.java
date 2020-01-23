@@ -9,7 +9,9 @@ public class TextWriter {
 	}
 
 	public void append(String string) {
-		text += string;
+		if (text.length() < 20) {
+			text += string;
+		}
 	}
 
 	public String textLessLast() {

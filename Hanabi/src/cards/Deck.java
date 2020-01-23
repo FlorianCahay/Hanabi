@@ -6,6 +6,7 @@ import java.util.Stack;
 import colors.Color;
 
 public class Deck {
+	
 	private final Stack<Card> deck = new Stack<>();
 
 	public Deck() {

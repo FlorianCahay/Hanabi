@@ -30,6 +30,9 @@ public class BoardViewGraphic extends ViewGraphic implements BoardView {
 
 	private void showBoard(Graphics2D graphics, Board board) {
 		setFont(graphics, 10);
+		String str = "Board";
+		graphics.drawString(str, centerTextOnX((int) getWidth() - getWidth(25), getStringWidth(str)) + getWidth(25),
+				getHeight(5));
 		tokenView.token(graphics, getWidth(25), getHeight(11), board.getNumberToken(new Token(colors.Color.RED)),
 				Color.red);
 		tokenView.token(graphics, getWidth(28), getHeight(11), board.getNumberToken(new Token(colors.Color.BLUE)),

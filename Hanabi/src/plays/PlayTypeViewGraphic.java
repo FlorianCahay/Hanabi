@@ -76,7 +76,8 @@ public class PlayTypeViewGraphic extends ViewGraphic implements PlayTypeView {
 		clearQuestion(graphics);
 		setFont(graphics, 5);
 		drawQuestion(graphics, "Choose a Color for your hint (click on value)");
-		choices(graphics, Arrays.asList(colors.Color.values()), getWidth(25), getHeight(3), getWidth(15), getHeight(1));
+		choices(graphics, Arrays.asList((Object[]) colors.Color.values()), getWidth(25), getHeight(3), getWidth(15),
+				getHeight(1));
 	}
 
 	@Override

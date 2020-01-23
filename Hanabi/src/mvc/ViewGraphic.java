@@ -51,6 +51,22 @@ public class ViewGraphic implements View {
 		graphics.drawString(text, centerTextOnX((int) width, getStringWidth(text)), y);
 	}
 
+	public static Object getItem(float x, float y, Collection<Object> list, int startX, int startY, int width,
+			int height) {
+		var nbElements = list.size();
+		var rectangleWidth = width / nbElements;
+		var rectangleHeight = height;
+		var iterator = list.iterator();
+		for (int i = 0; i < nbElements; i++) {
+			var element = iterator.next();
+			if (x > startX + i * rectangleWidth && x < startX + i * rectangleWidth + rectangleWidth && y > startY
+					&& y < startY + rectangleHeight) {
+				return element;
+			}
+		}
+		throw new IllegalArgumentException("Values given are not an item choice");
+	}
+
 	public void choices(Graphics2D graphics, Collection<Object> list, int x, int y, int width, int height) {
 		var nbElements = list.size();
 		var rectangleWidth = width / nbElements;
@@ -62,7 +78,7 @@ public class ViewGraphic implements View {
 			graphics.drawString(element,
 					x + centerTextOnX((int) rectangleWidth, getStringWidth(element)) + i * rectangleWidth,
 					(int) (y + rectangleHeight / 2));
-			;
+
 		}
 	}
 

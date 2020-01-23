@@ -7,9 +7,6 @@ public enum Color {
 
 	private final java.awt.Color color;
 
-	/**
-	 * @param color
-	 */
 	private Color(java.awt.Color color) {
 		this.color = color;
 	}

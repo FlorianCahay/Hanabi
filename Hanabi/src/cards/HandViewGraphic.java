@@ -69,7 +69,7 @@ public class HandViewGraphic extends ViewGraphic implements HandView {
 			if (player.equals(actualPlayer)) {
 				continue;
 			}
-			if (x > actualPlayerX && x < actualPlayerX + this.cardDifference * 4
+			if (x > actualPlayerX && x < actualPlayerX + this.cardDifference * actualPlayer.getHandSize()
 					&& y > actualPlayerY - i * cardHeightDifference
 					&& y < actualPlayerY - (i - 1) * cardHeightDifference) {
 				return player;

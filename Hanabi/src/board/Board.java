@@ -1,7 +1,8 @@
 package board;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.HashMap;
-import java.util.Stack;
 
 import cards.Card;
 import cards.Deck;
@@ -10,7 +11,7 @@ import tokens.Box;
 import tokens.Token;
 
 public class Board extends Box {
-	private final Stack<Card> discardedCards = new Stack<>();
+	private final Deque<Card> discardedCards = new ArrayDeque<>();
 	private final HashMap<Color, Integer> fireworks = new HashMap<>();
 
 	public Board() {
