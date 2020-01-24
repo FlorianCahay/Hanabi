@@ -17,6 +17,7 @@ public class PlayersViewTerminal extends ViewTerminal implements PlayersView {
 		System.out.println("Player " + (index + 1) + " write your name down :");
 	}
 
+	@Override
 	public void showPlayersCards(Players players, Player actualPlayer, int numberPlayer) {
 		separator();
 		System.out.println(players);

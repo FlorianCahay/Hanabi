@@ -1,7 +1,17 @@
 package player;
 
 public interface PlayerView {
-	public void showPlayer(Player player);
+	/**
+	 * Draws player informations
+	 * 
+	 * @param player Player which to show info
+	 */
+	void showPlayer(Player player);
 
-	public void askPlayType(String name);
+	/**
+	 * Draws a question to ask type of play
+	 * 
+	 * @param name Player name
+	 */
+	void askPlayType(String name);
 }

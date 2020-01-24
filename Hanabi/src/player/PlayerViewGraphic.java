@@ -16,6 +16,12 @@ public class PlayerViewGraphic extends ViewGraphic implements PlayerView {
 		renderFrame(graphics -> showPlayer(graphics, player));
 	}
 
+	/**
+	 * Draws player informations
+	 * 
+	 * @param graphics Application graphics
+	 * @param player   Player which to show info
+	 */
 	private void showPlayer(Graphics2D graphics, Player player) {
 		setFont(graphics, 5);
 		var str = player.getName() + " it is your turn now";

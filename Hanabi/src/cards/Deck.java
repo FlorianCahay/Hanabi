@@ -5,14 +5,26 @@ import java.util.Stack;
 
 import colors.Color;
 
+/**
+ * Represents a deck
+ * 
+ * @author Cahay-Durand
+ *
+ */
 public class Deck {
-	
+
 	private final Stack<Card> deck = new Stack<>();
 
+	/**
+	 * Constructs a deck with specifics cards
+	 */
 	public Deck() {
 		initializeDeck();
 	}
 
+	/**
+	 * Initializes deck and shuffle it
+	 */
 	private void initializeDeck() {
 		for (Color color : Color.values()) {
 			for (int i = 0; i < 10; i++) {
@@ -32,14 +44,29 @@ public class Deck {
 		Collections.shuffle(deck);
 	}
 
+	/**
+	 * Know if the deck is empty or not
+	 * 
+	 * @return true if deck is empty, false otherwise
+	 */
 	public boolean isEmpty() {
 		return deck.isEmpty();
 	}
 
+	/**
+	 * Gets the deck size
+	 * 
+	 * @return deck size
+	 */
 	public int getSize() {
 		return deck.size();
 	}
 
+	/**
+	 * Picks the top card out of the deck
+	 * 
+	 * @return Pop card
+	 */
 	public Card pickCard() {
 		return deck.pop();
 	}

@@ -4,10 +4,22 @@ import java.util.Objects;
 
 import colors.Color;
 
+/**
+ * Represents a token as a color
+ * 
+ * @author Cahay-Durand
+ *
+ */
 public class Token {
 	static final Color[] allowedColors = { Color.BLUE, Color.RED };
 	private final Color color;
 
+	/**
+	 * Constructs token with a color
+	 * 
+	 * @param color Token color
+	 * @throws IllegalArgumentException If token is not in allowedColors
+	 */
 	public Token(Color color) {
 		if (!isColorAllowed(color)) {
 			throw new IllegalArgumentException("a token can only be blue or red");
@@ -15,6 +27,12 @@ public class Token {
 		this.color = color;
 	}
 
+	/**
+	 * Tests if a color is allowed
+	 * 
+	 * @param color Color to test
+	 * @return True if color is allowed, false otherwise
+	 */
 	private boolean isColorAllowed(Color color) {
 		for (Color aColor : allowedColors) {
 			if (color == aColor) {

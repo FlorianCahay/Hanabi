@@ -17,6 +17,12 @@ import mvc.ViewGraphic;
 import player.Player;
 import player.Players;
 
+/**
+ * Represents a mouse Selector
+ * 
+ * @author Cahay-Durand
+ *
+ */
 public class MouseSelector implements Input {
 
 	private final ApplicationContext context;
@@ -24,12 +30,30 @@ public class MouseSelector implements Input {
 	private final MouseSelectorView view;
 	private final HandViewGraphic handView;
 
+	/**
+	 * Constructs a mouse selector
+	 * 
+	 * @param context  Application context
+	 * @param handView Hand view
+	 */
 	public MouseSelector(ApplicationContext context, HandViewGraphic handView) {
 		this.context = context;
 		this.view = new MouseSelectorView(context);
 		this.handView = handView;
 	}
 
+	/**
+	 * Gets a valid int value include in min and max from a list
+	 * 
+	 * @param error  Error to show if the value is not include in min max
+	 * @param min    Minimum value
+	 * @param max    Maximum value
+	 * @param x      Upper left corner x of the list
+	 * @param y      Upper left corner y of the list
+	 * @param width  List width
+	 * @param height List height
+	 * @return Valid int
+	 */
 	public int getValidInt(String error, int min, int max, int x, int y, int width, int height) {
 		List<Object> list = new ArrayList<>();
 		for (int i = min; i < max + 1; i++) {
@@ -50,6 +74,9 @@ public class MouseSelector implements Input {
 		}
 	}
 
+	/**
+	 * Wait some time
+	 */
 	private void waitEvent() {
 		try {
 			TimeUnit.MILLISECONDS.sleep(500);
@@ -137,8 +164,8 @@ public class MouseSelector implements Input {
 				model.reset();
 				return name;
 			}
-
 			model.reset();
+			view.error("This player name already exists");
 			view.resetName();
 		}
 	}

@@ -6,10 +6,22 @@ import java.awt.Graphics2D;
 import fr.umlv.zen5.ApplicationContext;
 import mvc.ViewGraphic;
 
+/**
+ * Represents graphics box view
+ * 
+ * @author Cahay-Durand
+ *
+ */
 public class BoxViewGraphic extends ViewGraphic implements BoxView {
 
 	private final TokenViewGraphic tokenView;
 
+	/**
+	 * Constructs graphic box view
+	 * 
+	 * @param context          Application context
+	 * @param tokenViewGraphic Graphic token view
+	 */
 	public BoxViewGraphic(ApplicationContext context, TokenViewGraphic tokenViewGraphic) {
 		super(context);
 		this.tokenView = tokenViewGraphic;
@@ -20,8 +32,14 @@ public class BoxViewGraphic extends ViewGraphic implements BoxView {
 		renderFrame(graphics -> showBox(graphics, box));
 	}
 
+	/**
+	 * Draws the box
+	 * 
+	 * @param graphics Application graphics
+	 * @param box      Game box
+	 */
 	private void showBox(Graphics2D graphics, Box box) {
-		setFont(graphics,10);
+		setFont(graphics, 10);
 		String str = box.typeOfBox();
 		graphics.fillRect(getWidth(25), getHeight(15), (int) getWidth() - getWidth(25), getHeight(13));
 		var tokenY = getHeight(17);

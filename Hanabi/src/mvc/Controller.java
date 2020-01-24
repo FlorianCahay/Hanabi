@@ -36,6 +36,12 @@ import tokens.BoxViewGraphic;
 import tokens.BoxViewTerminal;
 import tokens.TokenViewGraphic;
 
+/**
+ * Represents an interface to manage the whole program
+ * 
+ * @author Cahay-Durand
+ *
+ */
 public class Controller {
 
 	private static Input input = new ScannerSystemIn();
@@ -52,14 +58,28 @@ public class Controller {
 	private static Iterator<Player> playersIterator = null;
 
 	public static void main(String[] args) {
-		var graphic = true; // true for graphic and false for terminal
-		if (graphic) {
-			Application.run(java.awt.Color.WHITE, Controller::graphic);
-		} else {
-			playGame();
+		var result = new String();
+		System.out.println("Write \"T\" for terminal or write \"G\" for graphic view : ");
+		for (;;) {
+			result = input.getValidString(null);
+			if (result.equals("G")) {
+				input.close();
+				Application.run(java.awt.Color.WHITE, Controller::graphic);
+				break;
+			} else if (result.equals("T")) {
+				playGame();
+				break;
+			} else {
+				System.out.println("You must write \"T\" or \"G\"");
+			}
 		}
 	}
 
+	/**
+	 * Launch the graphic game
+	 * 
+	 * @param context Application context
+	 */
 	private static void graphic(ApplicationContext context) {
 		CardViewGraphic cardView = new CardViewGraphic(context);
 		TokenViewGraphic tokenView = new TokenViewGraphic(context);
@@ -74,6 +94,9 @@ public class Controller {
 		playGame();
 	}
 
+	/**
+	 * It Plays the game
+	 */
 	private static void playGame() {
 		numberPlayers = playersController.setPlayersNumber(input);
 		playersController.setPlayersName(numberPlayers, input, deckController.getModel());
@@ -95,6 +118,12 @@ public class Controller {
 		input.close();
 	}
 
+	/**
+	 * Draws game elements
+	 * 
+	 * @param actualPlayerController Actual player controller
+	 * @param numberPlayers          Number of players
+	 */
 	private static void showGame(PlayerController actualPlayerController, int numberPlayers) {
 		playersController.showPlayersCards(actualPlayerController.getModel(), numberPlayers);
 		deckController.showRemainingCards();

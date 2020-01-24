@@ -9,12 +9,28 @@ import cards.Card;
 import fr.umlv.zen5.ApplicationContext;
 import mvc.ViewGraphic;
 
+/**
+ * Represents graphic play type view
+ * 
+ * @author Cahay-Durand
+ *
+ */
 public class PlayTypeViewGraphic extends ViewGraphic implements PlayTypeView {
 
+	/**
+	 * Constructs graphic play type view
+	 * 
+	 * @param context Application context
+	 */
 	public PlayTypeViewGraphic(ApplicationContext context) {
 		super(context);
 	}
 
+	/**
+	 * Clears the last question asked
+	 * 
+	 * @param graphics Application graphics
+	 */
 	private void clearQuestion(Graphics2D graphics) {
 		graphics.setColor(Color.white);
 		graphics.fillRect(getWidth(25), getHeight(2) + getHeight(1) / 2, getWidth(16), getHeight(3));
@@ -26,6 +42,12 @@ public class PlayTypeViewGraphic extends ViewGraphic implements PlayTypeView {
 		renderFrame(graphics -> showPossiblePlays(graphics, plays));
 	}
 
+	/**
+	 * Draws possible plays
+	 * 
+	 * @param graphics Application graphics
+	 * @param plays    Possible plays
+	 */
 	private void showPossiblePlays(Graphics2D graphics, PlayTypeList plays) {
 		setFont(graphics, 5);
 		String str = "Which play do you want to do ?(click on value)";
@@ -37,8 +59,15 @@ public class PlayTypeViewGraphic extends ViewGraphic implements PlayTypeView {
 		choices(graphics, list, getWidth(25), getHeight(3), getWidth(15), getHeight(1));
 	}
 
+	/**
+	 * Draws a question
+	 * 
+	 * @param graphics Application graphics
+	 * @param str      Question to draw
+	 */
 	private void drawQuestion(Graphics2D graphics, String str) {
-		graphics.drawString(str, getWidth(25) + centerTextOnX(getWidth(15), getStringWidth(str)), getHeight(3));
+		graphics.drawString(str, getWidth(25) + centerTextOnX(getWidth(15), getStringWidth(str)),
+				getHeight(3) - graphics.getFont().getSize() / 4);
 	}
 
 	@Override
@@ -46,6 +75,11 @@ public class PlayTypeViewGraphic extends ViewGraphic implements PlayTypeView {
 		renderFrame(graphics -> askWhichPlayer(graphics));
 	}
 
+	/**
+	 * Draws question asking which player
+	 * 
+	 * @param graphics Application graphics
+	 */
 	private void askWhichPlayer(Graphics2D graphics) {
 		clearQuestion(graphics);
 		setFont(graphics, 5);
@@ -57,6 +91,11 @@ public class PlayTypeViewGraphic extends ViewGraphic implements PlayTypeView {
 		renderFrame(graphics -> askColorOrValue(graphics));
 	}
 
+	/**
+	 * Draws question asking for color or value
+	 * 
+	 * @param graphics Application graphics
+	 */
 	private void askColorOrValue(Graphics2D graphics) {
 		clearQuestion(graphics);
 		setFont(graphics, 5);
@@ -72,6 +111,11 @@ public class PlayTypeViewGraphic extends ViewGraphic implements PlayTypeView {
 		renderFrame(graphics -> askColor(graphics));
 	}
 
+	/**
+	 * Draws question asking for color
+	 * 
+	 * @param graphics Application graphics
+	 */
 	private void askColor(Graphics2D graphics) {
 		clearQuestion(graphics);
 		setFont(graphics, 5);
@@ -85,6 +129,11 @@ public class PlayTypeViewGraphic extends ViewGraphic implements PlayTypeView {
 		renderFrame(graphics -> askValue(graphics));
 	}
 
+	/**
+	 * Draws question asking for value
+	 * 
+	 * @param graphics Application graphics
+	 */
 	private void askValue(Graphics2D graphics) {
 		clearQuestion(graphics);
 		setFont(graphics, 5);
@@ -101,6 +150,11 @@ public class PlayTypeViewGraphic extends ViewGraphic implements PlayTypeView {
 		renderFrame(graphics -> askCard(graphics));
 	}
 
+	/**
+	 * Draws question asking for card
+	 * 
+	 * @param graphics Application graphics
+	 */
 	private void askCard(Graphics2D graphics) {
 		clearQuestion(graphics);
 		setFont(graphics, 5);

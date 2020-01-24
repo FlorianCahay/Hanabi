@@ -23,6 +23,11 @@ public class PlayersViewGraphic extends ViewGraphic implements PlayersView {
 		renderFrame(graphics -> askPlayersNumber(graphics));
 	}
 
+	/**
+	 * Asks for the number of players
+	 * 
+	 * @param graphics Application graphics
+	 */
 	private void askPlayersNumber(Graphics2D graphics) {
 		var str = "How many players are you ? (click on value)";
 		setFont(graphics, 10);
@@ -39,6 +44,12 @@ public class PlayersViewGraphic extends ViewGraphic implements PlayersView {
 		renderFrame(graphics -> askPlayerName(graphics, index));
 	}
 
+	/**
+	 * Asks for the player name
+	 * 
+	 * @param graphics Application graphics
+	 * @param index    Player index
+	 */
 	private void askPlayerName(Graphics2D graphics, int index) {
 		clear(graphics);
 		var str = "Player " + (index + 1) + " write your name down : (press space bar to valid your name)";
@@ -51,6 +62,14 @@ public class PlayersViewGraphic extends ViewGraphic implements PlayersView {
 		renderFrame(graphics -> showPlayersCards(graphics, players, actualPlayer, numberPlayers));
 	}
 
+	/**
+	 * Draws players cards
+	 * 
+	 * @param graphics      Application graphics
+	 * @param players       Players list
+	 * @param actualPlayer  Playing player
+	 * @param numberPlayers Number of player
+	 */
 	private void showPlayersCards(Graphics2D graphics, Players players, Player actualPlayer, int numberPlayers) {
 		clear(graphics);
 		setFont(graphics, 10);

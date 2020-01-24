@@ -1,6 +1,17 @@
 package tokens;
 
+/**
+ * Represents box view
+ * 
+ * @author Cahay-Durand
+ *
+ */
 public interface BoxView {
-	public void showBox(Box box);
+	/**
+	 * Draws the box
+	 * 
+	 * @param box Game box
+	 */
+	void showBox(Box box);
 
 }

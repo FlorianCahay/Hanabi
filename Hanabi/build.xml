@@ -1,0 +1,8 @@
+<project name="MyProject" default="" basedir=".">
+	<description>
+	    Hanabi build file
+	</description>
+	<property name="src" location="src" />
+	<property name="build" location="build" />
+	<property name="dist" location="dist" />
+</project>
