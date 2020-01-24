@@ -1,8 +1,56 @@
-<project name="MyProject" default="" basedir=".">
+<project name="Hanabi" default="jar" basedir=".">
 	<description>
 	    Hanabi build file
 	</description>
 	<property name="src" location="src" />
+	<property name="docs" location="docs" />
+	<property name="lib" location="lib" />
+	<property name="classes" location="classes" />
 	<property name="build" location="build" />
-	<property name="dist" location="dist" />
+
+	<target name="init">
+		<tstamp />
+		<mkdir dir="${classes}" />
+	</target>
+
+	<target name="compile" depends="init" description="compile the source">
+		<javac srcdir="${src}" destdir="${classes}">
+			<classpath>
+				<pathelement path="${lib}/zen5.jar" />
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="jar" depends="compile" description="generate jar">
+		<jar jarfile="Hanabi.jar" basedir="${classes}" />
+		<jar destfile="Hanabi.jar">
+			<fileset dir="${classes}" />
+			<zipgroupfileset dir="${lib}" includes="zen5.jar" />
+			<manifest>
+				<attribute name="Main-Class" value="mvc.Controller" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="javadoc" description="generate java doc">
+		<javadoc packagenames="*" sourcepath="${src}" excludepackagenames="doc-files.*" defaultexcludes="yes" destdir="${docs}/doc" author="true" version="true" use="true" windowtitle="Test API">
+			<classpath>
+				<fileset dir="${lib}">
+					<include name="zen5.jar" />
+				</fileset>
+			</classpath>
+			<doctitle>
+				<![CDATA[<h1>Hanabi</h1>]]>
+			</doctitle>
+			<bottom>
+				<![CDATA[<i>Université Gustave Eiffel [Cahay-Durand] </i>]]>
+			</bottom>
+		</javadoc>
+	</target>
+
+	<target name="clean">
+		<fileset dir="${classes}" includes="*" />
+		<delete dir="${docs}/doc" />
+	</target>
+
 </project>
